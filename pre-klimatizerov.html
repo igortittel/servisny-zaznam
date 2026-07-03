@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klimatizéri – Servisné záznamy a sezónne pripomienky | Servisný záznam</title>
+<meta name="description" content="Klimatizácie si vyžadujú jarný aj jesenný servis. Systém sám pošle pripomienku, zákazník zavolá — vy máte prácu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Hanken Grotesk',sans-serif;background:#F6F8F6;color:#14201A;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  #sz-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#11935A,#5FC58C);width:0%;z-index:9999;transition:width .1s}
+  #main-nav{position:sticky;top:0;z-index:100;background:rgba(246,248,246,.92);backdrop-filter:blur(12px);border-bottom:1px solid #E4E9E4}
+  .hero-section{background:linear-gradient(140deg,#101A14 0%,#12271D 30%,#0C6E43 70%,#11935A 100%);position:relative;overflow:hidden;padding:80px 32px 88px}
+  .hero-section::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+  .hero-orb{position:absolute;border-radius:50%;filter:blur(85px);opacity:.3;pointer-events:none}
+  .hero-orb-a{width:500px;height:500px;background:#5FC58C;top:-120px;right:-60px}
+  .hero-orb-b{width:250px;height:250px;background:#11935A;bottom:20px;left:5%}
+  .benefit-card{background:#fff;border:1px solid #E4E9E4;border-radius:16px;padding:28px;transition:box-shadow .2s,transform .2s}
+  .benefit-card:hover{box-shadow:0 8px 32px rgba(17,147,90,.12);transform:translateY(-3px)}
+  .benefit-icon{width:52px;height:52px;border-radius:12px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+  .mockup-box{background:#fff;border:1px solid #E4E9E4;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(16,26,20,.12)}
+  .cta-section{background:linear-gradient(135deg,#101A14,#0C6E43);border-radius:24px;padding:64px 48px;text-align:center;position:relative;overflow:hidden}
+  .cta-section::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.03'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+  .section-label{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#11935A;margin-bottom:12px}
+  .season-card{border-radius:12px;padding:16px 18px;display:flex;align-items:center;gap:14px}
+  .checklist-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #E4E9E4;font-size:14px;color:#14201A}
+  .checklist-item:last-child{border-bottom:none}
+</style>
+</head>
+<body>
+
+<div id="sz-progress"></div>
+
+<!-- NAV -->
+<header id="main-nav">
+  <div style="max-width:1200px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:32px">
+    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none">
+      <svg width="30" height="34" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="font-family:'Archivo';font-weight:800;font-size:18px;letter-spacing:-.02em;color:#14201A">Servisný záznam</span>
+    </a>
+    <nav style="display:flex;gap:28px;margin-left:8px;font-weight:500;font-size:15px">
+      <a href="index.html#funkcie" style="color:#56635B;text-decoration:none">Funkcie</a>
+      <a href="index.html#prekoho" style="color:#56635B;text-decoration:none">Pre koho</a>
+      <a href="index.html#cennik" style="color:#56635B;text-decoration:none">Cenník</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+      <a href="#" style="font-weight:600;font-size:15px;color:#14201A;text-decoration:none">Prihlásiť sa</a>
+      <a href="index.html#cennik" style="font-weight:600;font-size:15px;padding:11px 20px;border-radius:10px;background:#11935A;color:#fff;text-decoration:none">Vyskúšať zadarmo</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero-section">
+  <div class="hero-orb hero-orb-a"></div>
+  <div class="hero-orb hero-orb-b"></div>
+  <div id="hero-content" style="max-width:1200px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div>
+      <div style="margin-bottom:20px">
+        <a href="index.html#prekoho" style="color:rgba(255,255,255,.55);font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:6px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Pre koho
+        </a>
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:7px 16px;border-radius:99px;margin-bottom:28px;border:1px solid rgba(255,255,255,.18)">
+        <span style="width:7px;height:7px;border-radius:50%;background:#5FC58C"></span>
+        Pre klimatizérov
+      </div>
+      <h1 style="font-family:'Archivo';font-weight:800;font-size:48px;line-height:1.05;letter-spacing:-.03em;color:#fff;margin-bottom:22px">
+        Servisné záznamy a pripomienky<br><span style="color:#5FC58C">pre klimatizérov</span>
+      </h1>
+      <p style="font-size:18px;color:rgba(255,255,255,.72);max-width:480px;margin-bottom:36px;line-height:1.6">
+        Klimatizácie si vyžadujú jarný aj jesenný servis. Systém sám pošle pripomienku, zákazník zavolá — vy máte prácu.
+      </p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="index.html#cennik" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0C6E43;font-weight:700;font-size:16px;padding:14px 28px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.25)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Vyskúšať 14 dní zadarmo
+        </a>
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:16px;padding:14px 28px;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.22)">
+          Späť na hlavnú
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero visual: Seasonal reminder cards -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <!-- Spring card -->
+      <div style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:20px 22px;backdrop-filter:blur(8px)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(95,197,140,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FC58C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase">Jarný servis · Apríl</div>
+            <div style="font-size:15px;font-weight:700;color:#fff">Pripomienka odoslaná 142 zákazníkom</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,.75);font-style:italic">
+          "Dobrý deň, blíži sa čas jarného servisu vašej klimatizácie..."
+        </div>
+      </div>
+      <!-- Autumn card -->
+      <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:20px 22px;backdrop-filter:blur(8px)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div style="width:38px;height:38px;border-radius:10px;background:rgba(245,158,11,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.5c0 0 1.18-1.59 2.96-2.31C7.49 17 7.89 16 9 15.5c1.11-.5 1.71.32 3 0 1.29-.32 2-1.5 2-1.5s.5 1.5 1.5 1.5S18 13 19 11c1-2 1-3 1-3"/></svg>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase">Jesenný servis · September</div>
+            <div style="font-size:15px;font-weight:700;color:#fff">Pripomienka odoslaná 138 zákazníkom</div>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,.65);font-style:italic">
+          "Pred zimnou sezónou je vhodný čas na servis vykurovacej funkcie..."
+        </div>
+      </div>
+      <!-- Stat row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:700;color:#5FC58C">2×</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:4px">Ročne servis</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:700;color:#fff">SMS</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:4px">Automaticky</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-family:'JetBrains Mono';font-size:22px;font-weight:700;color:#fff">0 min</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.55);margin-top:4px">Vašej práce</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section style="max-width:1200px;margin:0 auto;padding:80px 32px">
+  <div id="benefits-header" style="text-align:center;margin-bottom:52px">
+    <div class="section-label">Ako systém pomáha</div>
+    <h2 style="font-family:'Archivo';font-weight:800;font-size:38px;letter-spacing:-.025em;color:#101A14;margin-bottom:14px">
+      Každá klimatizácia má jar aj jeseň zabezpečenú.
+    </h2>
+    <p style="font-size:17px;color:#56635B;max-width:540px;margin:0 auto">Systém pracuje za vás — zákazníci dostanú pripomienku sami, bez toho aby ste niečo museli robiť.</p>
+  </div>
+
+  <div id="benefits-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px">
+
+    <!-- Benefit 1 -->
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3 style="font-family:'Archivo';font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:10px;color:#101A14">Evidencia klimatizácií podľa výrobcu, modelu a sériového čísla</h3>
+      <p style="color:#56635B;font-size:15px;line-height:1.65">Každú klimatizáciu evidujete s výrobcom, modelom, sériovým číslom a dátumom inštalácie. Keď zákazník zavolá, ihneď viete o čom hovorí a čo bolo robené.</p>
+    </div>
+
+    <!-- Benefit 2 -->
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h3 style="font-family:'Archivo';font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:10px;color:#101A14">Sezónne pripomienky — jar aj jeseň automaticky</h3>
+      <p style="color:#56635B;font-size:15px;line-height:1.65">Systém odosiela sezónne SMS zákazníkom pred jarným aj jesenným servisom. Zákazník zavolá sám — vy nestratíte ani jeden servis.</p>
+    </div>
+
+    <!-- Benefit 3 -->
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+      <h3 style="font-family:'Archivo';font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:10px;color:#101A14">Kontrolný list pre čistenie a plnenie chladiva</h3>
+      <p style="color:#56635B;font-size:15px;line-height:1.65">Štruktúrovaný kontrolný list pre každý servis — čistenie filtrov, kontrola tlaku chladiva, meranie výkonov. Zákazník dostane kompletný doklad o vykonanej práci.</p>
+    </div>
+
+    <!-- Benefit 4 -->
+    <div class="benefit-card">
+      <div class="benefit-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3 style="font-family:'Archivo';font-weight:800;font-size:20px;letter-spacing:-.02em;margin-bottom:10px;color:#101A14">Zákazníkova klimatizácia nesmrdí a vy máte servis každý rok</h3>
+      <p style="color:#56635B;font-size:15px;line-height:1.65">Pravidelný servis = spokojný zákazník. A spokojný zákazník vás odporučí. Systém postará o to, aby zákazník nikdy nezabudol zavolať — a vy mali prácu celú sezónu.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FEATURE HIGHLIGHT: Seasonal checklist mockup -->
+<section style="background:#fff;border-top:1px solid #E4E9E4;border-bottom:1px solid #E4E9E4">
+  <div style="max-width:1200px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+
+    <!-- Mockup LEFT -->
+    <div id="feature-mockup">
+      <div class="mockup-box">
+        <!-- Header -->
+        <div style="background:#101A14;padding:16px 20px;display:flex;align-items:center;gap:10px">
+          <svg width="18" height="21" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-family:'Archivo';font-weight:800;font-size:13px;color:#fff">Servisný záznam — Klimatizácia</span>
+        </div>
+        <!-- Device info -->
+        <div style="padding:16px 20px;border-bottom:1px solid #E4E9E4;background:#F6F8F6">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-size:14px;font-weight:700;color:#101A14">Daikin FTXB35C</div>
+              <div style="font-size:12px;color:#56635B;margin-top:2px">S/N: JTY9874561 · Krajčí Ľubomír</div>
+            </div>
+            <span style="font-size:12px;font-weight:600;background:#ECF6F0;color:#0C6E43;padding:4px 10px;border-radius:6px">Jarný 2026</span>
+          </div>
+        </div>
+        <!-- Checklist -->
+        <div style="padding:16px 20px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9DAAA1;margin-bottom:10px">Kontrolný list servisu</div>
+          <div class="checklist-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#11935A"/><path d="M7 12l4 4 6-7" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Vyčistenie filtrov vnútornej jednotky</span>
+          </div>
+          <div class="checklist-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#11935A"/><path d="M7 12l4 4 6-7" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Čistenie výparníka vnútornej jednotky</span>
+          </div>
+          <div class="checklist-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#11935A"/><path d="M7 12l4 4 6-7" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Kontrola kondenzátorových chlopní vonk. jedn.</span>
+          </div>
+          <div class="checklist-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#11935A"/><path d="M7 12l4 4 6-7" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Meranie prevádzkových tlakov chladiva R32</span>
+          </div>
+          <div class="checklist-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#11935A"/><path d="M7 12l4 4 6-7" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Kontrola odvodu kondenzátu</span>
+          </div>
+          <div class="checklist-item" style="border-bottom:none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" fill="#E4E9E4"/><path d="M7 12l4 4 6-7" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span style="color:#9DAAA1">Doplnenie chladiva (v prípade potreby)</span>
+          </div>
+          <!-- Result strip -->
+          <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="background:#ECF6F0;border-radius:8px;padding:12px 14px">
+              <div style="font-size:11px;color:#56635B;margin-bottom:4px">Tlak chladiva</div>
+              <div style="font-family:'JetBrains Mono';font-size:15px;font-weight:700;color:#0C6E43">8.4 bar ✓</div>
+            </div>
+            <div style="background:#ECF6F0;border-radius:8px;padding:12px 14px">
+              <div style="font-size:11px;color:#56635B;margin-bottom:4px">Ďalší servis</div>
+              <div style="font-family:'JetBrains Mono';font-size:15px;font-weight:700;color:#0C6E43">sep 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text RIGHT -->
+    <div id="feature-text">
+      <div class="section-label">Kľúčová funkcia</div>
+      <h2 style="font-family:'Archivo';font-weight:800;font-size:36px;letter-spacing:-.025em;color:#101A14;margin-bottom:18px;line-height:1.15">
+        Štruktúrovaný servisný protokol pre každú klimatizáciu
+      </h2>
+      <p style="font-size:16px;color:#56635B;line-height:1.7;margin-bottom:24px">
+        Každý servisný záznam obsahuje kontrolný list úkonov, namerané hodnoty a výsledok. Zákazník dostane doklad, vy máte dôkaz o vykonanej práci.
+      </p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:14px">
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#56635B">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Prednastavený kontrolný list pre klimatizácie — zaškrtávate priamo na mobile</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#56635B">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Evidencia chladiva — typ, množstvo, tlaky pri servise</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#56635B">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Fotodokumentácia — stav pred a po servise priamo z fotoaparátu</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#56635B">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>PDF so všetkými hodnotami odoslaný zákazníkovi po servise</span>
+        </li>
+      </ul>
+      <div style="margin-top:28px;padding:18px 20px;background:#ECF6F0;border-radius:12px;border:1px solid #B7E0CC">
+        <div style="font-size:13px;font-weight:700;color:#0C6E43;margin-bottom:6px">Bonus: sezónne SMS kampane</div>
+        <div style="font-size:14px;color:#56635B;line-height:1.6">Jedným kliknutím odošlete SMS pripomienku všetkým zákazníkom pred jarným alebo jesenným servisným obdobím.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="max-width:1200px;margin:0 auto;padding:80px 32px">
+  <div class="cta-section">
+    <div style="position:relative;z-index:1">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);color:#fff;font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:7px 16px;border-radius:99px;margin-bottom:24px;border:1px solid rgba(255,255,255,.2)">
+        <span style="width:7px;height:7px;border-radius:50%;background:#5FC58C"></span>
+        Jar + jeseň pod kontrolou
+      </div>
+      <h2 style="font-family:'Archivo';font-weight:800;font-size:40px;letter-spacing:-.025em;color:#fff;margin-bottom:16px;line-height:1.1">
+        Každá klimatizácia servísovaná.<br>Každý zákazník spokojný.
+      </h2>
+      <p style="font-size:17px;color:rgba(255,255,255,.78);max-width:500px;margin:0 auto 36px;line-height:1.6">
+        14 dní zadarmo. Bez platobnej karty. Zadajte prvú klimatizáciu a systém sa postará o zvyšok.
+      </p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="index.html#cennik" style="display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0C6E43;font-weight:700;font-size:16px;padding:15px 32px;border-radius:12px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.22)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          Vyskúšať 14 dní zadarmo
+        </a>
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:16px;padding:15px 32px;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,.25)">
+          Viac o produkte
+        </a>
+      </div>
+      <p style="margin-top:20px;font-size:14px;color:rgba(255,255,255,.5)">Bez záväzkov · Slovenská podpora · Dáta vždy vaše</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#101A14;color:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:56px 32px 36px">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <svg width="28" height="32" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-family:'Archivo';font-weight:800;font-size:17px">Servisný záznam</span>
+        </div>
+        <p style="color:#9DAAA1;font-size:15px;max-width:280px">Menej administratívy. Viac hotových servisov. Lepší prehľad.</p>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:14px">Produkt</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="index.html#funkcie" style="color:#9DAAA1;font-size:15px;text-decoration:none">Funkcie</a>
+          <a href="index.html#cennik" style="color:#9DAAA1;font-size:15px;text-decoration:none">Cenník</a>
+          <a href="index.html#prekoho" style="color:#9DAAA1;font-size:15px;text-decoration:none">Pre koho</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:14px">Pre odvetvia</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="pre-kurenar ov.html" style="color:#9DAAA1;font-size:15px;text-decoration:none">Kúrenári</a>
+          <a href="pre-klimatizerov.html" style="color:#9DAAA1;font-size:15px;text-decoration:none">Klimatizéri</a>
+          <a href="pre-servisnych-technikov.html" style="color:#9DAAA1;font-size:15px;text-decoration:none">Servisní technici</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:14px;margin-bottom:14px">Kontakt</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="tel:+421919208589" style="color:#9DAAA1;font-size:15px;text-decoration:none">+421 919 208 589</a>
+          <a href="mailto:servis@zaznam.sk" style="color:#9DAAA1;font-size:15px;text-decoration:none">servis@zaznam.sk</a>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:24px;display:flex;justify-content:space-between;align-items:center;color:#7C887F;font-size:14px;flex-wrap:wrap;gap:12px">
+      <span>© 2026 Servisnyzaznam.sk</span>
+      <span>Vyrobené pre technikov, ktorí radšej robia ako vypisujú.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    document.getElementById('sz-progress').style.width = pct + '%';
+  });
+
+  const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  tl.from('#main-nav', { y: -60, opacity: 0, duration: 0.7 })
+    .from('#hero-content > *', { y: 40, opacity: 0, stagger: 0.14, duration: 0.8 }, '-=0.3');
+
+  gsap.from('#benefits-header', {
+    scrollTrigger: { trigger: '#benefits-header', start: 'top 85%' },
+    y: 30, opacity: 0, duration: 0.7, ease: 'power3.out'
+  });
+  gsap.from('.benefit-card', {
+    scrollTrigger: { trigger: '#benefits-grid', start: 'top 80%' },
+    y: 40, opacity: 0, stagger: 0.12, duration: 0.7, ease: 'power3.out'
+  });
+  gsap.from('#feature-mockup', {
+    scrollTrigger: { trigger: '#feature-mockup', start: 'top 80%' },
+    x: -40, opacity: 0, duration: 0.8, ease: 'power3.out'
+  });
+  gsap.from('#feature-text > *', {
+    scrollTrigger: { trigger: '#feature-text', start: 'top 80%' },
+    y: 30, opacity: 0, stagger: 0.1, duration: 0.7, ease: 'power3.out'
+  });
+</script>
+</body>
+</html>

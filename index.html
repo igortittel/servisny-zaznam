@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servisný záznam – Menej administratívy. Viac hotových servisov.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div id="sz-progress"></div>
+<div class="c-cursor" id="c-cursor"></div>
+<div class="c-dot" id="c-dot"></div>
+
+<!-- NAV -->
+<header id="main-nav">
+  <div style="max-width:1200px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:32px">
+    <a href="#" style="display:flex;align-items:center;gap:10px">
+      <svg width="30" height="34" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span style="font-family:'Archivo';font-weight:800;font-size:18px;letter-spacing:-.02em">Servisný záznam</span>
+    </a>
+    <nav style="display:flex;gap:28px;margin-left:8px;font-weight:500;font-size:15px;color:#56635B">
+      <a href="#funkcie" class="nav-link">Funkcie</a>
+      <a href="#prekoho" class="nav-link">Pre koho</a>
+      <a href="#cennik" class="nav-link">Cenník</a>
+      <a href="#referencie" class="nav-link">Referencie</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:14px">
+      <a href="#" class="login-link" style="font-weight:600;font-size:15px;color:#14201A">Prihlásiť sa</a>
+      <a href="#cennik" class="mag-btn btn-green" style="font-weight:600;font-size:15px;padding:11px 20px;border-radius:10px;box-shadow:0 2px 8px rgba(17,147,90,.22)">Vyskúšať zadarmo</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO A: split -->
+<div id="hero-a" class="hero active dot-bg">
+  <div class="hero-orbs">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+  </div>
+  <section style="max-width:1200px;margin:0 auto;padding:80px 32px 72px;display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center;position:relative;z-index:1">
+    <div>
+      <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:7px 14px;border-radius:99px;margin-bottom:24px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#11935A"></span>Servisný softvér pre technikov
+      </div>
+      <h1 class="hero-title" style="font-family:'Archivo';font-weight:800;font-size:54px;line-height:1.04;letter-spacing:-.03em;margin-bottom:22px">Menej administratívy.<br><span style="color:#11935A">Viac hotových servisov.</span></h1>
+      <p class="hero-desc" style="font-size:19px;color:#56635B;max-width:480px;margin-bottom:32px">Evidencia zákazníkov a zariadení, digitálne servisné záznamy a automatické SMS pripomienky — všetko na jednom mieste. Z mobilu aj z počítača.</p>
+      <div class="hero-ctas" style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px">
+        <a href="#cennik" class="mag-btn btn-green" style="font-weight:600;font-size:17px;padding:15px 28px;border-radius:12px;box-shadow:0 4px 14px rgba(17,147,90,.25)">Vyskúšať 14 dní zadarmo</a>
+        <a href="#funkcie" class="btn-white" style="font-weight:600;font-size:17px;padding:15px 28px;border-radius:12px">Ako to funguje</a>
+      </div>
+      <div class="hero-trust" style="display:flex;align-items:center;gap:18px;font-size:14px;color:#56635B;font-weight:500">
+        <span style="display:flex;align-items:center;gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bez platobnej karty</span>
+        <span style="display:flex;align-items:center;gap:6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bez školenia</span>
+      </div>
+    </div>
+    <div class="hero-visual hero-float">
+      <div style="background:#fff;border:1px solid #E4E9E4;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(20,32,26,.12);font-family:'Hanken Grotesk',system-ui,sans-serif;color:#14201A">
+        <div style="height:40px;background:#F6F8F6;border-bottom:1px solid #E4E9E4;display:flex;align-items:center;padding:0 14px;gap:8px">
+          <span style="width:11px;height:11px;border-radius:50%;background:#E5675A"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#E8B14C"></span>
+          <span style="width:11px;height:11px;border-radius:50%;background:#5EBE73"></span>
+          <div style="margin:0 auto;background:#fff;border:1px solid #E4E9E4;border-radius:7px;padding:4px 14px;font-size:12px;color:#8A938C;font-family:'JetBrains Mono'">app.servisnyzaznam.sk</div>
+        </div>
+        <div style="display:flex;min-height:380px">
+          <aside style="width:184px;background:#FAFBFA;border-right:1px solid #E4E9E4;padding:16px 12px;flex-shrink:0">
+            <div style="display:flex;align-items:center;gap:8px;padding:6px 8px 14px">
+              <svg width="20" height="23" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span style="font-family:'Archivo';font-weight:800;font-size:13px;letter-spacing:-.01em">Servisný záznam</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Prehľad</div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#56635B;font-weight:500;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Zákazníci</div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#56635B;font-weight:500;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18v3h3l6.1-6.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-.4-.4-2.1z"/></svg>Zariadenia</div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#56635B;font-weight:500;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Servisy</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 10px;border-radius:9px;color:#56635B;font-weight:500;font-size:13px;margin-bottom:3px"><span style="display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Pripomienky</span><span style="background:#E08A36;color:#fff;font-size:10px;font-weight:700;border-radius:99px;padding:1px 6px">4</span></div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;color:#56635B;font-weight:500;font-size:13px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Kalendár</div>
+          </aside>
+          <main style="flex:1;padding:20px 22px;min-width:0">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px">
+              <div>
+                <h3 style="font-family:'Archivo';font-weight:800;font-size:19px;letter-spacing:-.01em;margin:0 0 2px">Dnešné servisy</h3>
+                <p style="margin:0;font-size:13px;color:#8A938C;font-family:'JetBrains Mono'">Štvrtok · 26. jún 2026</p>
+              </div>
+              <div style="background:#11935A;color:#fff;font-weight:600;font-size:13px;padding:8px 14px;border-radius:9px;display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>Nový záznam</div>
+            </div>
+            <div style="display:flex;gap:10px;margin-bottom:16px">
+              <div style="flex:1;background:#FAFBFA;border:1px solid #E4E9E4;border-radius:11px;padding:12px 14px"><div style="font-family:'Archivo';font-weight:800;font-size:22px">4</div><div style="font-size:12px;color:#8A938C">dnes naplánované</div></div>
+              <div style="flex:1;background:#FAFBFA;border:1px solid #E4E9E4;border-radius:11px;padding:12px 14px"><div style="font-family:'Archivo';font-weight:800;font-size:22px;color:#E08A36">7</div><div style="font-size:12px;color:#8A938C">čaká na pripomienku</div></div>
+              <div style="flex:1;background:#FAFBFA;border:1px solid #E4E9E4;border-radius:11px;padding:12px 14px"><div style="font-family:'Archivo';font-weight:800;font-size:22px;color:#11935A">128</div><div style="font-size:12px;color:#8A938C">zariadení celkom</div></div>
+            </div>
+            <div style="border:1px solid #E4E9E4;border-radius:12px;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #EEF1EE">
+                <div style="width:34px;height:34px;border-radius:9px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.9"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-2-3.5-2-5.5a3 3 0 0 1 6 0c0 .9-.4 1.7-1 2.5"/><path d="M12 22c4 0 7-2.5 7-7 0-2-1-3.5-2.5-5"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14px">Ján Novák</div><div style="font-size:12px;color:#8A938C">Plynový kotol Vaillant ecoTEC</div></div>
+                <span style="background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px;white-space:nowrap">Dnes 14:00</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #EEF1EE">
+                <div style="width:34px;height:34px;border-radius:9px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.9"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14px">Mária Kováčová</div><div style="font-size:12px;color:#8A938C">Tepelné čerpadlo NIBE F2120</div></div>
+                <span style="background:#F1F3F1;color:#56635B;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px;white-space:nowrap">Zajtra 9:00</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #EEF1EE">
+                <div style="width:34px;height:34px;border-radius:9px;background:#FBF1E6;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E08A36" stroke-width="1.9"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14px">Peter Horváth</div><div style="font-size:12px;color:#8A938C">Klimatizácia Daikin Stylish</div></div>
+                <span style="background:#FBF1E6;color:#B86B22;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px;white-space:nowrap">o 3 dni</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:13px 16px">
+                <div style="width:34px;height:34px;border-radius:9px;background:#FBF1E6;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E08A36" stroke-width="1.9"><path d="m13 2-9 11h7l-1 9 9-11h-7z"/></svg></div>
+                <div style="flex:1;min-width:0"><div style="font-weight:600;font-size:14px">Eva Tóthová</div><div style="font-size:12px;color:#8A938C">Elektrokotol Protherm Ray</div></div>
+                <span style="background:#FBF1E6;color:#B86B22;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px;white-space:nowrap">o 6 dní</span>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- HERO B: centered -->
+<div id="hero-b" class="hero dot-bg" style="display:none">
+  <section style="max-width:1000px;margin:0 auto;padding:84px 32px 36px;text-align:center;position:relative;z-index:1">
+    <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:7px 14px;border-radius:99px;margin-bottom:24px">
+      <span style="width:7px;height:7px;border-radius:50%;background:#11935A"></span>Servisný softvér pre technikov a firmy
+    </div>
+    <h1 class="hero-title" style="font-family:'Archivo';font-weight:800;font-size:60px;line-height:1.02;letter-spacing:-.03em;margin-bottom:22px">Menej administratívy.<br><span style="color:#11935A">Viac hotových servisov.</span></h1>
+    <p class="hero-desc" style="font-size:20px;color:#56635B;max-width:600px;margin:0 auto 32px">Digitálne servisné záznamy, databáza zariadení a automatické pripomienky servisov. Praktický nástroj, ktorý technika nezdržuje.</p>
+    <div class="hero-ctas" style="display:flex;gap:14px;justify-content:center;margin-bottom:14px">
+      <a href="#cennik" class="mag-btn btn-green" style="font-weight:600;font-size:17px;padding:15px 28px;border-radius:12px;box-shadow:0 4px 14px rgba(17,147,90,.25)">Vyskúšať 14 dní zadarmo</a>
+      <a href="#funkcie" class="btn-white" style="font-weight:600;font-size:17px;padding:15px 28px;border-radius:12px">Ako to funguje</a>
+    </div>
+    <p class="hero-trust" style="font-size:14px;color:#8A938C;font-weight:500;margin-bottom:8px">Bez platobnej karty · Funguje na mobile aj PC</p>
+  </section>
+  <div class="hero-visual hero-float" style="max-width:1080px;margin:0 auto 16px;padding:0 32px;position:relative;z-index:1">
+    <div style="background:#fff;border:1px solid #E4E9E4;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(20,32,26,.12)">
+      <div style="height:40px;background:#F6F8F6;border-bottom:1px solid #E4E9E4;display:flex;align-items:center;padding:0 14px;gap:8px">
+        <span style="width:11px;height:11px;border-radius:50%;background:#E5675A"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#E8B14C"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#5EBE73"></span>
+        <div style="margin:0 auto;background:#fff;border:1px solid #E4E9E4;border-radius:7px;padding:4px 14px;font-size:12px;color:#8A938C;font-family:'JetBrains Mono'">app.servisnyzaznam.sk</div>
+      </div>
+      <div style="display:flex;min-height:380px">
+        <aside style="width:184px;background:#FAFBFA;border-right:1px solid #E4E9E4;padding:16px 12px;flex-shrink:0">
+          <div style="display:flex;align-items:center;gap:8px;padding:6px 8px 14px">
+            <svg width="20" height="23" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span style="font-family:'Archivo';font-weight:800;font-size:13px">Servisný záznam</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:9px;background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Prehľad</div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;color:#56635B;font-weight:500;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Zákazníci</div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 10px;color:#56635B;font-weight:500;font-size:13px;margin-bottom:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Servisy</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 10px;color:#56635B;font-weight:500;font-size:13px"><span style="display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Pripomienky</span><span style="background:#E08A36;color:#fff;font-size:10px;font-weight:700;border-radius:99px;padding:1px 6px">4</span></div>
+        </aside>
+        <main style="flex:1;padding:20px 22px;min-width:0">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px">
+            <div><h3 style="font-family:'Archivo';font-weight:800;font-size:19px;margin:0 0 2px">Dnešné servisy</h3><p style="margin:0;font-size:13px;color:#8A938C;font-family:'JetBrains Mono'">Štvrtok · 26. jún 2026</p></div>
+            <div style="background:#11935A;color:#fff;font-weight:600;font-size:13px;padding:8px 14px;border-radius:9px;display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>Nový záznam</div>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div style="flex:1;background:#FAFBFA;border:1px solid #E4E9E4;border-radius:11px;padding:12px 14px"><div style="font-family:'Archivo';font-weight:800;font-size:22px">4</div><div style="font-size:12px;color:#8A938C">dnes naplánované</div></div>
+            <div style="flex:1;background:#FAFBFA;border:1px solid #E4E9E4;border-radius:11px;padding:12px 14px"><div style="font-family:'Archivo';font-weight:800;font-size:22px;color:#E08A36">7</div><div style="font-size:12px;color:#8A938C">čaká na pripomienku</div></div>
+            <div style="flex:1;background:#FAFBFA;border:1px solid #E4E9E4;border-radius:11px;padding:12px 14px"><div style="font-family:'Archivo';font-weight:800;font-size:22px;color:#11935A">128</div><div style="font-size:12px;color:#8A938C">zariadení celkom</div></div>
+          </div>
+          <div style="border:1px solid #E4E9E4;border-radius:12px;overflow:hidden">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #EEF1EE">
+              <div style="width:34px;height:34px;border-radius:9px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.9"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-2-3.5-2-5.5a3 3 0 0 1 6 0c0 .9-.4 1.7-1 2.5"/><path d="M12 22c4 0 7-2.5 7-7 0-2-1-3.5-2.5-5"/></svg></div>
+              <div style="flex:1"><div style="font-weight:600;font-size:14px">Ján Novák</div><div style="font-size:12px;color:#8A938C">Plynový kotol Vaillant ecoTEC</div></div>
+              <span style="background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px">Dnes 14:00</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid #EEF1EE">
+              <div style="width:34px;height:34px;border-radius:9px;background:#FBF1E6;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E08A36" stroke-width="1.9"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg></div>
+              <div style="flex:1"><div style="font-weight:600;font-size:14px">Peter Horváth</div><div style="font-size:12px;color:#8A938C">Klimatizácia Daikin Stylish</div></div>
+              <span style="background:#FBF1E6;color:#B86B22;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px">o 3 dni</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 16px">
+              <div style="width:34px;height:34px;border-radius:9px;background:#FBF1E6;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E08A36" stroke-width="1.9"><path d="m13 2-9 11h7l-1 9 9-11h-7z"/></svg></div>
+              <div style="flex:1"><div style="font-weight:600;font-size:14px">Eva Tóthová</div><div style="font-size:12px;color:#8A938C">Elektrokotol Protherm Ray</div></div>
+              <span style="background:#FBF1E6;color:#B86B22;font-weight:600;font-size:12px;padding:5px 10px;border-radius:7px">o 6 dní</span>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO C: phone / reminders -->
+<div id="hero-c" class="hero dot-bg" style="display:none">
+  <section style="max-width:1200px;margin:0 auto;padding:80px 32px 64px;display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1">
+    <div>
+      <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:#FBF1E6;color:#B86B22;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:7px 14px;border-radius:99px;margin-bottom:24px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#E08A36;animation:pulseDot 1.6s infinite"></span>Automatické pripomienky
+      </div>
+      <h1 class="hero-title" style="font-family:'Archivo';font-weight:800;font-size:54px;line-height:1.04;letter-spacing:-.03em;margin-bottom:22px">Zákazník si na servis<br><span style="color:#11935A">spomenie sám.</span></h1>
+      <p class="hero-desc" style="font-size:19px;color:#56635B;max-width:480px;margin-bottom:32px">Systém stráži termíny ďalších servisov a revízií. Pripomienku pošle SMS-kou aj e-mailom — vy len prijmete objednávku.</p>
+      <div class="hero-ctas" style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#cennik" class="mag-btn btn-green" style="font-weight:600;font-size:17px;padding:15px 28px;border-radius:12px;box-shadow:0 4px 14px rgba(17,147,90,.25)">Vyskúšať 14 dní zadarmo</a>
+        <a href="#funkcie" class="btn-white" style="font-weight:600;font-size:17px;padding:15px 28px;border-radius:12px">Ako to funguje</a>
+      </div>
+    </div>
+    <div class="hero-visual hero-float" style="display:flex;justify-content:center">
+      <div style="width:268px;height:546px;background:#0D0F12;border-radius:42px;padding:11px;box-shadow:0 26px 60px rgba(20,32,26,.28);font-family:'Hanken Grotesk',system-ui,sans-serif;position:relative">
+        <div style="position:absolute;top:22px;left:50%;transform:translateX(-50%);width:96px;height:26px;background:#0D0F12;border-radius:99px;z-index:3"></div>
+        <div style="width:100%;height:100%;border-radius:32px;background:linear-gradient(165deg,#1C2A22 0%,#0E1712 60%,#11160F 100%);overflow:hidden;position:relative;display:flex;flex-direction:column">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px 0;color:#fff;font-size:13px;font-weight:600">
+            <span style="font-family:'JetBrains Mono'">9:41</span>
+            <span style="display:flex;gap:5px;align-items:center"><svg width="16" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 22 16" fill="none"><rect x="1" y="3" width="17" height="10" rx="3" stroke="#fff" stroke-width="1.4"/><rect x="3" y="5" width="12" height="6" rx="1.5" fill="#fff"/><rect x="19" y="6" width="2" height="4" rx="1" fill="#fff"/></svg></span>
+          </div>
+          <div style="text-align:center;color:#fff;margin-top:30px">
+            <div style="font-size:15px;font-weight:500;opacity:.85">Štvrtok, 26. júna</div>
+            <div style="font-family:'Archivo';font-weight:700;font-size:70px;line-height:1;letter-spacing:-.02em;margin-top:2px">9:41</div>
+          </div>
+          <div style="margin-top:auto;padding:0 12px 20px;display:flex;flex-direction:column;gap:9px">
+            <div style="background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border-radius:17px;padding:12px 13px;display:flex;gap:11px;align-items:flex-start">
+              <div style="width:34px;height:34px;border-radius:9px;background:#2BB673;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <div style="min-width:0">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="color:#fff;font-weight:700;font-size:13px">SMS · Servis</span><span style="color:rgba(255,255,255,.6);font-size:11px;font-family:'JetBrains Mono'">teraz</span></div>
+                <div style="color:rgba(255,255,255,.92);font-size:12.5px;line-height:1.35;margin-top:2px">Dobrý deň, blíži sa termín servisu vášho kotla Vaillant. Objednať: zaznam.sk/o/4821</div>
+              </div>
+            </div>
+            <div style="background:rgba(255,255,255,.13);backdrop-filter:blur(14px);border-radius:17px;padding:12px 13px;display:flex;gap:11px;align-items:flex-start">
+              <div style="width:34px;height:34px;border-radius:9px;background:#11935A;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+              <div style="min-width:0">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px"><span style="color:#fff;font-weight:700;font-size:13px">E-mail · Pripomienka</span><span style="color:rgba(255,255,255,.6);font-size:11px;font-family:'JetBrains Mono'">8:00</span></div>
+                <div style="color:rgba(255,255,255,.92);font-size:12.5px;line-height:1.35;margin-top:2px">Pravidelná kontrola odporúčaná do konca mesiaca.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- LOGOS STRIP -->
+<section style="background:#fff;border-top:1px solid #E4E9E4;border-bottom:1px solid #E4E9E4">
+  <div style="max-width:1100px;margin:0 auto;padding:34px 0">
+    <div class="marquee-outer">
+      <div class="marquee-track">
+        <div class="marquee-inner">
+          <span style="font-weight:600;color:#8A938C;font-size:15px;white-space:nowrap">Nahrádza:</span>
+          <span style="display:flex;align-items:center;gap:9px;color:#56635B;font-weight:600;font-size:17px;white-space:nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A6AFA7" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>papier</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="display:flex;align-items:center;gap:9px;color:#56635B;font-weight:600;font-size:17px;white-space:nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A6AFA7" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>Excel</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="display:flex;align-items:center;gap:9px;color:#56635B;font-weight:600;font-size:17px;white-space:nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A6AFA7" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/></svg>WhatsApp</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="color:#56635B;font-weight:600;font-size:17px;white-space:nowrap">ručné pripomienky</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="color:#56635B;font-weight:600;font-size:17px;white-space:nowrap">chaos v histórii</span>
+          <span style="color:#D6DAD6;padding:0 8px">——</span>
+        </div>
+        <div class="marquee-inner" aria-hidden="true">
+          <span style="font-weight:600;color:#8A938C;font-size:15px;white-space:nowrap">Nahrádza:</span>
+          <span style="display:flex;align-items:center;gap:9px;color:#56635B;font-weight:600;font-size:17px;white-space:nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A6AFA7" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>papier</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="display:flex;align-items:center;gap:9px;color:#56635B;font-weight:600;font-size:17px;white-space:nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A6AFA7" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>Excel</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="display:flex;align-items:center;gap:9px;color:#56635B;font-weight:600;font-size:17px;white-space:nowrap"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A6AFA7" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.6A8.38 8.38 0 0 1 4 11.5 8.5 8.5 0 0 1 12.5 3 8.38 8.38 0 0 1 21 11.5z"/></svg>WhatsApp</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="color:#56635B;font-weight:600;font-size:17px;white-space:nowrap">ručné pripomienky</span>
+          <span style="color:#D6DAD6">·</span>
+          <span style="color:#56635B;font-weight:600;font-size:17px;white-space:nowrap">chaos v histórii</span>
+          <span style="color:#D6DAD6;padding:0 8px">——</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITY -->
+<section id="funkcie" style="max-width:1200px;margin:0 auto;padding:96px 32px 40px">
+  <div class="section-head" style="text-align:center;max-width:660px;margin:0 auto 56px">
+    <p style="color:#11935A;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Čo systém robí</p>
+    <h2 style="font-family:'Archivo';font-weight:800;font-size:40px;letter-spacing:-.02em;line-height:1.08">Všetko okolo servisu na jednom mieste</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+    <div class="feature-card" style="background:#fff;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+      <div style="width:48px;height:48px;border-radius:13px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:19px;margin-bottom:8px">Automatické pripomienky</h3>
+      <p style="font-size:15px;color:#56635B">SMS a e-mail pred termínom servisu. Žiadne zabudnuté kontroly.</p>
+    </div>
+    <div class="feature-card" style="background:#fff;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+      <div style="width:48px;height:48px;border-radius:13px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg></div>
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:19px;margin-bottom:8px">Digitálne dokumenty</h3>
+      <p style="font-size:15px;color:#56635B">Servisné záznamy, protokoly a revízie ako hotové PDF.</p>
+    </div>
+    <div class="feature-card" style="background:#fff;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+      <div style="width:48px;height:48px;border-radius:13px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg></div>
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:19px;margin-bottom:8px">Zákazníci a zariadenia</h3>
+      <p style="font-size:15px;color:#56635B">Prehľadná databáza s celou servisnou históriou každého zariadenia.</p>
+    </div>
+    <div class="feature-card" style="background:#fff;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+      <div style="width:48px;height:48px;border-radius:13px;background:#FBF1E6;display:flex;align-items:center;justify-content:center;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E08A36" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:19px;margin-bottom:8px">Menej písania</h3>
+      <p style="font-size:15px;color:#56635B">Predvyplnené formuláre z profilu zákazníka. Záznam za pár ťukov.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRE KOHO -->
+<section id="prekoho" style="max-width:1200px;margin:0 auto;padding:56px 32px 40px">
+  <div class="green-card" style="background:#11935A;border-radius:28px;padding:54px 48px;color:#fff;position:relative;overflow:hidden">
+    <div style="position:absolute;right:-40px;top:-40px;width:260px;height:260px;opacity:.12"><svg viewBox="0 0 34 38" fill="#fff"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z"/></svg></div>
+    <p style="color:#A8E0C2;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Pre koho</p>
+    <h2 style="font-family:'Archivo';font-weight:800;font-size:34px;letter-spacing:-.02em;margin-bottom:8px;max-width:560px">Postavené pre ľudí, ktorí radšej robia ako vypisujú</h2>
+    <p style="color:#CDEBD9;font-size:17px;max-width:560px;margin-bottom:32px">Samostatní technici aj celé servisné firmy s viacerými prístupmi do jedného systému.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;position:relative">
+      <a href="pre-servisnych-technikov.html" class="tag-chip" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 18px;font-weight:600;font-size:16px;color:#fff;text-decoration:none;transition:background .2s,border-color .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18v3h3l6.1-6.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-.4-.4-2.1z"/></svg>Servisní technici <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="pre-reviznych-technikov.html" class="tag-chip" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 18px;font-weight:600;font-size:16px;color:#fff;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Revízni technici <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="pre-kurenаrov.html" class="tag-chip" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 18px;font-weight:600;font-size:16px;color:#fff;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-2-3.5-2-5.5a3 3 0 0 1 6 0c0 .9-.4 1.7-1 2.5"/><path d="M12 22c4 0 7-2.5 7-7 0-2-1-3.5-2.5-5"/></svg>Kúrenári <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="pre-klimatizerov.html" class="tag-chip" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 18px;font-weight:600;font-size:16px;color:#fff;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19"/></svg>Klimatizéri <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="pre-servisne-firmy.html" class="tag-chip" style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px 18px;font-weight:600;font-size:16px;color:#fff;text-decoration:none;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3"/><path d="M9 9v.01M9 12v.01M9 15v.01"/></svg>Servisné firmy <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 1: pripomienky -->
+<section id="feature-1" style="max-width:1200px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+  <div id="feature-1-visual" style="display:flex;justify-content:center;order:2">
+    <div style="width:268px;height:546px;background:#0D0F12;border-radius:42px;padding:11px;box-shadow:0 26px 60px rgba(20,32,26,.28);position:relative">
+      <div style="position:absolute;top:22px;left:50%;transform:translateX(-50%);width:96px;height:26px;background:#0D0F12;border-radius:99px;z-index:3"></div>
+      <div style="width:100%;height:100%;border-radius:32px;background:linear-gradient(165deg,#1C2A22 0%,#0E1712 60%,#11160F 100%);overflow:hidden;display:flex;flex-direction:column">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 24px 0;color:#fff;font-size:13px;font-weight:600">
+          <span style="font-family:'JetBrains Mono'">9:41</span>
+          <span style="display:flex;gap:5px;align-items:center"><svg width="16" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="1" width="3" height="11" rx="1"/></svg></span>
+        </div>
+        <div style="text-align:center;color:#fff;margin-top:30px">
+          <div style="font-size:15px;font-weight:500;opacity:.85">Štvrtok, 26. júna</div>
+          <div style="font-family:'Archivo';font-weight:700;font-size:70px;line-height:1;letter-spacing:-.02em;margin-top:2px">9:41</div>
+        </div>
+        <div style="margin-top:auto;padding:0 12px 20px;display:flex;flex-direction:column;gap:9px">
+          <div style="background:rgba(255,255,255,.16);backdrop-filter:blur(14px);border-radius:17px;padding:12px 13px;display:flex;gap:11px;align-items:flex-start">
+            <div style="width:34px;height:34px;border-radius:9px;background:#2BB673;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <div><div style="display:flex;justify-content:space-between;gap:8px"><span style="color:#fff;font-weight:700;font-size:13px">SMS · Servis</span><span style="color:rgba(255,255,255,.6);font-size:11px;font-family:'JetBrains Mono'">teraz</span></div><div style="color:rgba(255,255,255,.92);font-size:12.5px;line-height:1.35;margin-top:2px">Dobrý deň, blíži sa termín servisu vášho kotla Vaillant.</div></div>
+          </div>
+          <div style="background:rgba(255,255,255,.13);backdrop-filter:blur(14px);border-radius:17px;padding:12px 13px;display:flex;gap:11px;align-items:flex-start">
+            <div style="width:34px;height:34px;border-radius:9px;background:#11935A;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></div>
+            <div><div style="display:flex;justify-content:space-between;gap:8px"><span style="color:#fff;font-weight:700;font-size:13px">E-mail · Pripomienka</span><span style="color:rgba(255,255,255,.6);font-size:11px;font-family:'JetBrains Mono'">8:00</span></div><div style="color:rgba(255,255,255,.92);font-size:12.5px;line-height:1.35;margin-top:2px">Pravidelná kontrola odporúčaná do konca mesiaca.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="feature-1-text" style="order:1">
+    <p style="color:#11935A;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Automatické pripomienky</p>
+    <h2 style="font-family:'Archivo';font-weight:800;font-size:38px;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px">Follow-up, ktorý sa<br>postará sám o seba</h2>
+    <p style="font-size:18px;color:#56635B;margin-bottom:28px;max-width:460px">Systém sleduje výročné termíny servisov a revízií. Keď sa termín blíži, zákazník dostane SMS aj e-mail s výzvou na objednanie. Vy nemusíte sledovať nič.</p>
+    <a href="#cennik" class="mag-btn btn-green" style="display:inline-block;font-weight:600;font-size:16px;padding:14px 26px;border-radius:11px;box-shadow:0 4px 14px rgba(17,147,90,.25);margin-top:8px">Chcem automatizáciu</a>
+  </div>
+</section>
+
+<!-- FEATURE 2: dokumenty -->
+<section style="background:#fff;border-top:1px solid #E4E9E4;border-bottom:1px solid #E4E9E4">
+  <div id="feature-2" style="max-width:1200px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div id="feature-2-text">
+      <p style="color:#11935A;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Digitálne dokumenty</p>
+      <h2 style="font-family:'Archivo';font-weight:800;font-size:38px;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px">Servisný záznam<br>za pár ťukov</h2>
+      <p style="font-size:18px;color:#56635B;margin-bottom:28px;max-width:460px">Vyberiete zariadenie, systém predvyplní údaje zákazníka a vygeneruje hotové PDF. Servisné záznamy, revízne aj servisné protokoly — v jednotnom, profesionálnom dizajne.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px">
+        <span style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:8px;padding:7px 12px;font-size:14px;font-weight:600;font-family:'JetBrains Mono';color:#56635B">Plynové kotly</span>
+        <span style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:8px;padding:7px 12px;font-size:14px;font-weight:600;font-family:'JetBrains Mono';color:#56635B">Elektrokotly</span>
+        <span style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:8px;padding:7px 12px;font-size:14px;font-weight:600;font-family:'JetBrains Mono';color:#56635B">Tepelné čerpadlá</span>
+        <span style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:8px;padding:7px 12px;font-size:14px;font-weight:600;font-family:'JetBrains Mono';color:#56635B">Klimatizácie</span>
+        <span style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:8px;padding:7px 12px;font-size:14px;font-weight:600;font-family:'JetBrains Mono';color:#56635B">Ohrievače</span>
+      </div>
+      <a href="#cennik" class="mag-btn btn-green" style="display:inline-block;font-weight:600;font-size:16px;padding:14px 26px;border-radius:11px;box-shadow:0 4px 14px rgba(17,147,90,.25);margin-top:8px">Pozrieť ukážku PDF</a>
+    </div>
+    <div id="feature-2-visual" style="display:flex;justify-content:center">
+      <div style="position:relative;width:380px;height:480px">
+        <div style="position:absolute;top:24px;left:38px;width:300px;height:430px;background:#fff;border:1px solid #E4E9E4;border-radius:8px;box-shadow:0 14px 36px rgba(20,32,26,.10);transform:rotate(4deg)"></div>
+        <div style="position:absolute;top:6px;left:6px;width:308px;height:448px;background:#fff;border:1px solid #E4E9E4;border-radius:8px;box-shadow:0 18px 48px rgba(20,32,26,.16);padding:24px 26px;overflow:hidden">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #14201A;padding-bottom:12px;margin-bottom:14px">
+            <div style="font-family:'Archivo';font-weight:800;font-size:17px;letter-spacing:.02em;line-height:1">SERVISNÝ<br>ZÁZNAM</div>
+            <div style="text-align:right">
+              <svg width="22" height="25" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div style="font-size:9px;color:#8A938C;font-family:'JetBrains Mono';margin-top:4px">č. 2026-04821</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-bottom:14px">
+            <div><div style="font-size:8.5px;color:#8A938C;text-transform:uppercase;letter-spacing:.05em;font-weight:600">Zákazník</div><div style="font-size:12px;font-weight:600;margin-top:1px">Ján Novák</div></div>
+            <div><div style="font-size:8.5px;color:#8A938C;text-transform:uppercase;letter-spacing:.05em;font-weight:600">Dátum</div><div style="font-size:12px;font-weight:600;margin-top:1px;font-family:'JetBrains Mono'">26. 06. 2026</div></div>
+            <div><div style="font-size:8.5px;color:#8A938C;text-transform:uppercase;letter-spacing:.05em;font-weight:600">Zariadenie</div><div style="font-size:12px;font-weight:600;margin-top:1px">Vaillant ecoTEC plus</div></div>
+            <div><div style="font-size:8.5px;color:#8A938C;text-transform:uppercase;letter-spacing:.05em;font-weight:600">Výr. číslo</div><div style="font-size:12px;font-weight:600;margin-top:1px;font-family:'JetBrains Mono'">21·VC·90418</div></div>
+          </div>
+          <div style="background:#F6F8F6;border-radius:6px;padding:11px 13px;margin-bottom:12px">
+            <div style="font-size:9px;color:#8A938C;text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-bottom:7px">Vykonané úkony</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#2A332D"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Kontrola tesnosti plynu</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#2A332D"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Čistenie horáka a výmenníka</div>
+              <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#2A332D"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.6"><path d="M20 6 9 17l-5-5"/></svg>Kontrola spalín a tlaku</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-bottom:16px">
+            <div style="flex:1;border:1px solid #E4E9E4;border-radius:6px;padding:8px 10px"><div style="font-size:8.5px;color:#8A938C;font-weight:600">Tlak systému</div><div style="font-size:13px;font-weight:700;font-family:'JetBrains Mono'">1,4 bar</div></div>
+            <div style="flex:1;border:1px solid #E4E9E4;border-radius:6px;padding:8px 10px"><div style="font-size:8.5px;color:#8A938C;font-weight:600">Ďalší servis</div><div style="font-size:13px;font-weight:700;font-family:'JetBrains Mono';color:#11935A">06/2027</div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px dashed #D6DAD6;padding-top:12px">
+            <div><div style="font-size:8.5px;color:#8A938C;font-weight:600;margin-bottom:6px">Technik</div><div style="font-family:'Archivo';font-style:italic;font-size:15px;color:#11935A;transform:rotate(-3deg)">M. Kollár</div></div>
+            <div style="text-align:center"><div style="width:54px;height:54px;border:1.5px solid #11935A;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#11935A;font-family:'JetBrains Mono';font-size:8px;font-weight:700;text-align:center;line-height:1.1">OK<br>SERVIS</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 3: CRM -->
+<section id="feature-3" style="max-width:1200px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center">
+  <div id="feature-3-text">
+    <p style="color:#11935A;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Databáza zákazníkov</p>
+    <h2 style="font-family:'Archivo';font-weight:800;font-size:38px;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px">Celá servisná história<br>na dva kliky</h2>
+    <p style="font-size:18px;color:#56635B;margin-bottom:28px;max-width:460px">Každý zákazník, jeho zariadenia, záznamy aj dokumenty pohromade. Rýchle vyhľadávanie, prístup z terénu, dáta konzistentné pre celý tím.</p>
+    <a href="#cennik" class="mag-btn btn-green" style="display:inline-block;font-weight:600;font-size:16px;padding:14px 26px;border-radius:11px;box-shadow:0 4px 14px rgba(17,147,90,.25);margin-top:8px">Vyskúšať databázu zákazníkov</a>
+  </div>
+  <div id="feature-3-visual" style="background:#fff;border:1px solid #E4E9E4;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(20,32,26,.12)">
+    <div style="height:40px;background:#F6F8F6;border-bottom:1px solid #E4E9E4;display:flex;align-items:center;padding:0 14px;gap:8px">
+      <span style="width:11px;height:11px;border-radius:50%;background:#E5675A"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#E8B14C"></span>
+      <span style="width:11px;height:11px;border-radius:50%;background:#5EBE73"></span>
+      <div style="margin:0 auto;background:#fff;border:1px solid #E4E9E4;border-radius:7px;padding:4px 14px;font-size:12px;color:#8A938C;font-family:'JetBrains Mono'">app.servisnyzaznam.sk</div>
+    </div>
+    <div style="display:flex;min-height:340px">
+      <aside style="width:160px;background:#FAFBFA;border-right:1px solid #E4E9E4;padding:14px 10px;flex-shrink:0">
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 7px 12px"><svg width="18" height="20" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span style="font-family:'Archivo';font-weight:800;font-size:12px">Servisný záznam</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:8px;color:#56635B;font-weight:500;font-size:12px;margin-bottom:2px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Prehľad</div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:8px;background:#ECF6F0;color:#0C6E43;font-weight:600;font-size:12px;margin-bottom:2px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Zákazníci</div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:8px;color:#56635B;font-weight:500;font-size:12px;margin-bottom:2px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18v3h3l6.1-6.1a4 4 0 0 0 5.6-5.6l-2.5 2.5-2.1-.4-.4-2.1z"/></svg>Zariadenia</div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:8px;color:#56635B;font-weight:500;font-size:12px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>Servisy</div>
+      </aside>
+      <main style="flex:1;padding:16px 18px;min-width:0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <h3 style="font-family:'Archivo';font-weight:800;font-size:16px;margin:0">Zákazníci</h3>
+          <div style="background:#11935A;color:#fff;font-weight:600;font-size:12px;padding:6px 12px;border-radius:8px">+ Pridať</div>
+        </div>
+        <div style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:12px;color:#8A938C">🔍 Hľadať zákazníka...</div>
+        <div style="border:1px solid #E4E9E4;border-radius:10px;overflow:hidden">
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #EEF1EE">
+            <div style="width:28px;height:28px;border-radius:7px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Archivo';font-weight:700;font-size:11px;color:#0C6E43">JN</div>
+            <div style="flex:1"><div style="font-weight:600;font-size:12px">Ján Novák</div><div style="font-size:11px;color:#8A938C">2 zariadenia</div></div>
+            <span style="background:#ECF6F0;color:#0C6E43;font-size:10px;font-weight:600;padding:3px 7px;border-radius:5px">Aktívny</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid #EEF1EE">
+            <div style="width:28px;height:28px;border-radius:7px;background:#FBF1E6;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Archivo';font-weight:700;font-size:11px;color:#B86B22">MK</div>
+            <div style="flex:1"><div style="font-weight:600;font-size:12px">Mária Kováčová</div><div style="font-size:11px;color:#8A938C">1 zariadenie</div></div>
+            <span style="background:#FBF1E6;color:#B86B22;font-size:10px;font-weight:600;padding:3px 7px;border-radius:5px">Čaká</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:10px 12px">
+            <div style="width:28px;height:28px;border-radius:7px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Archivo';font-weight:700;font-size:11px;color:#0C6E43">PH</div>
+            <div style="flex:1"><div style="font-weight:600;font-size:12px">Peter Horváth</div><div style="font-size:11px;color:#8A938C">3 zariadenia</div></div>
+            <span style="background:#ECF6F0;color:#0C6E43;font-size:10px;font-weight:600;padding:3px 7px;border-radius:5px">Aktívny</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+<!-- AKO TO FUNGUJE -->
+<section class="how-section" style="background:#101A14;color:#fff">
+  <div style="max-width:1100px;margin:0 auto;padding:88px 32px">
+    <div class="section-head" style="text-align:center;margin-bottom:56px">
+      <p style="color:#5FC58C;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Aký je postup</p>
+      <h2 style="font-family:'Archivo';font-weight:800;font-size:40px;letter-spacing:-.02em">Spustíte sa za jedno poobedie</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+      <div class="step-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px">
+        <div style="font-family:'JetBrains Mono';font-weight:700;color:#5FC58C;font-size:15px;margin-bottom:18px">KROK 01</div>
+        <h3 style="font-family:'Archivo';font-weight:700;font-size:21px;margin-bottom:10px">Vyberiete balík a zaregistrujete sa</h3>
+        <p style="font-size:16px;color:#9DAAA1">Jednoducho si vyberiete želaný balíček služieb a zaregistrujete sa. Trvá to pár minút.</p>
+      </div>
+      <div class="step-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px">
+        <div style="font-family:'JetBrains Mono';font-weight:700;color:#5FC58C;font-size:15px;margin-bottom:18px">KROK 02</div>
+        <h3 style="font-family:'Archivo';font-weight:700;font-size:21px;margin-bottom:10px">Pripravíme váš účet na mieru</h3>
+        <p style="font-size:16px;color:#9DAAA1">My pripravíme účet na mieru, presne podľa vášho dizajn manuálu. Dokumenty s vašim logom a farbami.</p>
+      </div>
+      <div class="step-card" style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:32px">
+        <div style="font-family:'JetBrains Mono';font-weight:700;color:#5FC58C;font-size:15px;margin-bottom:18px">KROK 03</div>
+        <h3 style="font-family:'Archivo';font-weight:700;font-size:21px;margin-bottom:10px">Môžete začať pracovať</h3>
+        <p style="font-size:16px;color:#9DAAA1">Hotovo — všetko je pripravené pre pohodlné používanie a môžete generovať protokoly na pár ťukov.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENNIK -->
+<section id="cennik" style="max-width:1200px;margin:0 auto;padding:96px 32px 56px">
+  <div class="section-head" style="text-align:center;max-width:600px;margin:0 auto 32px">
+    <p style="color:#11935A;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Cenník</p>
+    <h2 style="font-family:'Archivo';font-weight:800;font-size:40px;letter-spacing:-.02em;margin-bottom:12px">Jednoduché ceny, žiadne prekvapenia</h2>
+    <p style="font-size:17px;color:#56635B">14 dní zadarmo. Bez platobnej karty. Zrušíte kedykoľvek.</p>
+  </div>
+  <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:40px;align-items:center">
+    <p style="font-size:14px;color:#8A938C">Ceny sú uvedené bez DPH · Pri ročnej platbe <strong style="color:#14201A">2 mesiace zadarmo</strong></p>
+    <span style="color:#D6DAD6">|</span>
+    <button onclick="openModal('implementacia')" style="display:flex;align-items:center;gap:8px;background:none;border:1px solid #E4E9E4;border-radius:9px;padding:9px 16px;font-size:14px;font-weight:600;color:#14201A;cursor:pointer;font-family:'Hanken Grotesk',sans-serif;transition:border-color .2s,color .2s" onmouseover="this.style.borderColor='#11935A';this.style.color='#11935A'" onmouseout="this.style.borderColor='#E4E9E4';this.style.color='#14201A'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>Implementácia systému · 499 € jednorazovo</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch">
+    <div class="price-card lift" style="background:#fff;border:1px solid #E4E9E4;border-radius:22px;padding:34px;display:flex;flex-direction:column">
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:22px;margin-bottom:6px">Technik</h3>
+      <p style="font-size:15px;color:#56635B;margin-bottom:22px">Pre samostatného alebo revízneho technika.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:26px"><span style="font-family:'Archivo';font-weight:800;font-size:44px;letter-spacing:-.02em"><span class="price-num">39</span> €</span><span style="color:#8A938C;font-weight:500">/ mesiac</span></div>
+      <button onclick="openModal('technik')" class="btn-outline" style="font-weight:600;font-size:16px;text-align:center;padding:13px;border-radius:11px;margin-bottom:26px;cursor:pointer;width:100%;font-family:'Hanken Grotesk',sans-serif">Mám záujem</button>
+      <ul style="display:flex;flex-direction:column;gap:13px;font-size:15px;color:#3A463F">
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>1 používateľ</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Neobmedzene zákazníkov a zariadení</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Digitálne servisné záznamy a PDF</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>E-mailové pripomienky</li>
+      </ul>
+    </div>
+    <div class="price-card price-popular lift" style="background:#fff;border:2px solid #11935A;border-radius:22px;padding:34px;display:flex;flex-direction:column;position:relative">
+      <span style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#E08A36;color:#fff;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;padding:6px 14px;border-radius:99px;white-space:nowrap">Najobľúbenejší</span>
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:22px;margin-bottom:6px">Komplexný technik</h3>
+      <p style="font-size:15px;color:#56635B;margin-bottom:22px">Pre technika, ktorý chce aj SMS a revízie.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:26px"><span style="font-family:'Archivo';font-weight:800;font-size:44px;letter-spacing:-.02em;color:#11935A"><span class="price-num">49</span> €</span><span style="color:#8A938C;font-weight:500">/ mesiac</span></div>
+      <button onclick="openModal('komplex')" class="lift btn-green" style="font-weight:600;font-size:16px;text-align:center;padding:13px;border-radius:11px;margin-bottom:26px;box-shadow:0 4px 12px rgba(17,147,90,.25);cursor:pointer;width:100%;border:none;font-family:'Hanken Grotesk',sans-serif">Mám záujem</button>
+      <ul style="display:flex;flex-direction:column;gap:13px;font-size:15px;color:#3A463F">
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Všetko z balíka Technik</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>SMS aj e-mailové pripomienky</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Revízne protokoly</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Prioritná podpora</li>
+      </ul>
+    </div>
+    <div class="price-card lift" style="background:#fff;border:1px solid #E4E9E4;border-radius:22px;padding:34px;display:flex;flex-direction:column">
+      <h3 style="font-family:'Archivo';font-weight:700;font-size:22px;margin-bottom:6px">Servisná firma</h3>
+      <p style="font-size:15px;color:#56635B;margin-bottom:22px">Pre tím viacerých technikov s administratívou.</p>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:26px"><span style="font-family:'Archivo';font-weight:800;font-size:44px;letter-spacing:-.02em"><span class="price-num">59</span> €</span><span style="color:#8A938C;font-weight:500">/ mesiac</span></div>
+      <button onclick="openModal('firma')" class="btn-outline" style="font-weight:600;font-size:16px;text-align:center;padding:13px;border-radius:11px;margin-bottom:26px;cursor:pointer;width:100%;font-family:'Hanken Grotesk',sans-serif">Mám záujem</button>
+      <ul style="display:flex;flex-direction:column;gap:13px;font-size:15px;color:#3A463F">
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Všetko z balíka Komplexný</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Viac používateľov, zdieľané dáta</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Spoločná databáza a história</li>
+        <li style="display:flex;gap:10px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0"><path d="M20 6 9 17l-5-5"/></svg>Audit zmien</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCIE -->
+<section id="referencie" style="background:#fff;border-top:1px solid #E4E9E4;border-bottom:1px solid #E4E9E4">
+  <div style="max-width:1100px;margin:0 auto;padding:88px 32px">
+    <div class="section-head" style="text-align:center;max-width:560px;margin:0 auto 48px">
+      <p style="color:#11935A;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px">Referencie</p>
+      <h2 style="font-family:'Archivo';font-weight:800;font-size:38px;letter-spacing:-.02em">Technici, ktorí prestali vypisovať papiere</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+      <div class="testimonial-card" style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+        <div style="margin-bottom:16px;color:#E08A36;font-size:18px">★★★★★</div>
+        <p style="font-size:16px;color:#2A332D;margin-bottom:22px">„Pripomienky chodia samé a zákazníci sa ozývajú sami. Pribudlo mi servisov bez toho, aby som čokoľvek riešil."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:42px;height:42px;border-radius:50%;background:#11935A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Archivo'">MK</div>
+          <div><div style="font-weight:700;font-size:15px">Martin Kollár</div><div style="font-size:13px;color:#8A938C">Kúrenár, Žilina</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+        <div style="margin-bottom:16px;color:#E08A36;font-size:18px">★★★★★</div>
+        <p style="font-size:16px;color:#2A332D;margin-bottom:22px">„Záznam vypíšem priamo u zákazníka na mobile za dve minúty. Predtým som večery trávil prepisovaním."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:42px;height:42px;border-radius:50%;background:#E08A36;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Archivo'">PH</div>
+          <div><div style="font-weight:700;font-size:15px">Peter Horváth</div><div style="font-size:13px;color:#8A938C">Klimatizér, Nitra</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card" style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:18px;padding:28px">
+        <div style="margin-bottom:16px;color:#E08A36;font-size:18px">★★★★★</div>
+        <p style="font-size:16px;color:#2A332D;margin-bottom:22px">„Máme štyroch technikov v jednom systéme. Konečne vidíme všetci to isté a nič sa nestráca."</p>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:42px;height:42px;border-radius:50%;background:#101A14;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Archivo'">JS</div>
+          <div><div style="font-weight:700;font-size:15px">Ján Slovák</div><div style="font-size:13px;color:#8A938C">Servisná firma, Trnava</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT / CTA -->
+<section id="kontakt" style="max-width:1100px;margin:0 auto;padding:96px 32px">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div class="contact-text">
+      <h2 style="font-family:'Archivo';font-weight:800;font-size:40px;letter-spacing:-.02em;line-height:1.08;margin-bottom:18px">Skúste to na vlastných zákazníkoch</h2>
+      <p style="font-size:18px;color:#56635B;margin-bottom:30px;max-width:420px">Napíšte nám a pripravíme vám účet na mieru. Alebo sa rovno zaregistrujte a vyskúšajte 14 dní zadarmo.</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <a href="tel:+421919208589" style="display:flex;align-items:center;gap:12px;font-weight:600;font-size:17px;transition:color .15s" onmouseover="this.style.color='#11935A'" onmouseout="this.style.color=''">
+          <span style="width:42px;height:42px;border-radius:11px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.6a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.5-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.5 2.6.6a2 2 0 0 1 1.7 2z"/></svg></span>
+          +421 919 208 589
+        </a>
+        <a href="mailto:servis@zaznam.sk" style="display:flex;align-items:center;gap:12px;font-weight:600;font-size:17px;transition:color .15s" onmouseover="this.style.color='#11935A'" onmouseout="this.style.color=''">
+          <span style="width:42px;height:42px;border-radius:11px;background:#ECF6F0;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+          servis@zaznam.sk
+        </a>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <form id="contact-form" style="background:#fff;border:1px solid #E4E9E4;border-radius:22px;padding:32px;box-shadow:0 8px 30px rgba(20,32,26,.05)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+          <div><label style="display:block;font-size:13px;font-weight:600;color:#56635B;margin-bottom:6px">Meno</label><input placeholder="Ján" style="width:100%;border:1px solid #E4E9E4;border-radius:10px;padding:12px 14px;font-size:15px;background:#FAFBFA;transition:border-color .15s,background .15s"></div>
+          <div><label style="display:block;font-size:13px;font-weight:600;color:#56635B;margin-bottom:6px">Priezvisko</label><input placeholder="Novák" style="width:100%;border:1px solid #E4E9E4;border-radius:10px;padding:12px 14px;font-size:15px;background:#FAFBFA;transition:border-color .15s,background .15s"></div>
+        </div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:13px;font-weight:600;color:#56635B;margin-bottom:6px">E-mail</label><input type="email" placeholder="jan@firma.sk" style="width:100%;border:1px solid #E4E9E4;border-radius:10px;padding:12px 14px;font-size:15px;background:#FAFBFA;transition:border-color .15s,background .15s"></div>
+        <div style="margin-bottom:14px"><label style="display:block;font-size:13px;font-weight:600;color:#56635B;margin-bottom:6px">Profesia</label><input placeholder="Napr. kúrenár, klimatizér, servisná firma" style="width:100%;border:1px solid #E4E9E4;border-radius:10px;padding:12px 14px;font-size:15px;background:#FAFBFA;transition:border-color .15s,background .15s"></div>
+        <div style="margin-bottom:18px"><label style="display:block;font-size:13px;font-weight:600;color:#56635B;margin-bottom:6px">Poznámka</label><textarea rows="3" placeholder="Čo potrebujete vyriešiť?" style="width:100%;border:1px solid #E4E9E4;border-radius:10px;padding:12px 14px;font-size:15px;background:#FAFBFA;resize:vertical;transition:border-color .15s,background .15s"></textarea></div>
+        <button type="submit" class="lift" style="width:100%;background:#11935A;color:#fff;font-weight:700;font-size:16px;padding:14px;border:none;border-radius:11px;cursor:pointer;box-shadow:0 4px 12px rgba(17,147,90,.25)">Odoslať</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#101A14;color:#fff">
+  <div style="max-width:1200px;margin:0 auto;padding:56px 32px 36px">
+    <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1)">
+      <div class="footer-col">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <svg width="28" height="32" viewBox="0 0 34 38" fill="none"><path d="M17 1.5 32 10v18L17 36.5 2 28V10z" fill="#11935A"/><path d="M11.5 19.5 15.5 23.5 23 15" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-family:'Archivo';font-weight:800;font-size:17px">Servisný záznam</span>
+        </div>
+        <p style="color:#9DAAA1;font-size:15px;max-width:280px">Menej administratívy. Viac hotových servisov. Lepší prehľad.</p>
+      </div>
+      <div class="footer-col">
+        <div style="font-weight:700;font-size:14px;margin-bottom:14px">Produkt</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="#funkcie" class="footer-link">Funkcie</a>
+          <a href="#cennik" class="footer-link">Cenník</a>
+          <a href="#prekoho" class="footer-link">Pre koho</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div style="font-weight:700;font-size:14px;margin-bottom:14px">Spoločnosť</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="#" class="footer-link">O nás</a>
+          <a href="#referencie" class="footer-link">Referencie</a>
+          <a href="#" class="footer-link">Ochrana údajov</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div style="font-weight:700;font-size:14px;margin-bottom:14px">Kontakt</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="tel:+421919208589" class="footer-link">+421 919 208 589</a>
+          <a href="mailto:servis@zaznam.sk" class="footer-link">servis@zaznam.sk</a>
+        </div>
+      </div>
+    </div>
+    <div style="padding-top:24px;display:flex;justify-content:space-between;align-items:center;color:#7C887F;font-size:14px;flex-wrap:wrap;gap:12px">
+      <span>© 2026 Servisnyzaznam.sk</span>
+      <span>Vyrobené pre technikov, ktorí radšej robia ako vypisujú.</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- MODALS -->
+<div id="modal-technik" class="modal-overlay" onclick="closeModalOverlay(event,'technik')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('technik')">✕</button>
+    <div class="modal-plan-badge" style="background:#ECF6F0;color:#0C6E43">Technik · 39 € / mesiac</div>
+    <h3 class="modal-title">Záujem o balík Technik</h3>
+    <p class="modal-sub">Vyplňte kontakt a ozveme sa vám do 24 hodín.</p>
+    <form class="modal-form" onsubmit="submitModalForm(event,'technik')">
+      <input type="hidden" name="balik" value="Technik">
+      <div class="modal-row">
+        <div><label>Meno</label><input type="text" placeholder="Ján" required></div>
+        <div><label>Priezvisko</label><input type="text" placeholder="Novák" required></div>
+      </div>
+      <div><label>E-mail</label><input type="email" placeholder="jan@firma.sk" required></div>
+      <div><label>Telefón</label><input type="tel" placeholder="+421 900 000 000"></div>
+      <div><label>Poznámka</label><textarea rows="3" placeholder="Vaša profesia, počet zariadení..."></textarea></div>
+      <button type="submit" class="modal-submit">Odoslať záujem</button>
+    </form>
+  </div>
+</div>
+
+<div id="modal-komplex" class="modal-overlay" onclick="closeModalOverlay(event,'komplex')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('komplex')">✕</button>
+    <div class="modal-plan-badge" style="background:#ECF6F0;color:#0C6E43">Komplexný technik · 49 € / mesiac</div>
+    <h3 class="modal-title">Záujem o balík Komplexný technik</h3>
+    <p class="modal-sub">Vyplňte kontakt a ozveme sa vám do 24 hodín.</p>
+    <form class="modal-form" onsubmit="submitModalForm(event,'komplex')">
+      <input type="hidden" name="balik" value="Komplexný technik">
+      <div class="modal-row">
+        <div><label>Meno</label><input type="text" placeholder="Ján" required></div>
+        <div><label>Priezvisko</label><input type="text" placeholder="Novák" required></div>
+      </div>
+      <div><label>E-mail</label><input type="email" placeholder="jan@firma.sk" required></div>
+      <div><label>Telefón</label><input type="tel" placeholder="+421 900 000 000"></div>
+      <div><label>Poznámka</label><textarea rows="3" placeholder="Vaša profesia, počet zariadení..."></textarea></div>
+      <button type="submit" class="modal-submit">Odoslať záujem</button>
+    </form>
+  </div>
+</div>
+
+<div id="modal-firma" class="modal-overlay" onclick="closeModalOverlay(event,'firma')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('firma')">✕</button>
+    <div class="modal-plan-badge" style="background:#ECF6F0;color:#0C6E43">Servisná firma · 59 € / mesiac</div>
+    <h3 class="modal-title">Záujem o balík Servisná firma</h3>
+    <p class="modal-sub">Vyplňte kontakt a ozveme sa vám do 24 hodín.</p>
+    <form class="modal-form" onsubmit="submitModalForm(event,'firma')">
+      <input type="hidden" name="balik" value="Servisná firma">
+      <div class="modal-row">
+        <div><label>Meno</label><input type="text" placeholder="Ján" required></div>
+        <div><label>Priezvisko</label><input type="text" placeholder="Novák" required></div>
+      </div>
+      <div><label>E-mail</label><input type="email" placeholder="jan@firma.sk" required></div>
+      <div><label>Telefón</label><input type="tel" placeholder="+421 900 000 000"></div>
+      <div><label>Počet technikov</label><input type="text" placeholder="Napr. 3 technici"></div>
+      <div><label>Poznámka</label><textarea rows="3" placeholder="Ďalšie informácie..."></textarea></div>
+      <button type="submit" class="modal-submit">Odoslať záujem</button>
+    </form>
+  </div>
+</div>
+
+<div id="modal-implementacia" class="modal-overlay" onclick="closeModalOverlay(event,'implementacia')">
+  <div class="modal-box modal-box--wide">
+    <button class="modal-close" onclick="closeModal('implementacia')">✕</button>
+    <h3 class="modal-title">Implementácia systému</h3>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:24px">
+      <div style="background:#ECF6F0;border-radius:10px;padding:14px 20px;flex:1;min-width:140px">
+        <div style="font-size:12px;color:#56635B;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Cena</div>
+        <div style="font-family:'Archivo';font-weight:800;font-size:22px;color:#0C6E43">499 € <span style="font-size:14px;font-weight:500;color:#56635B">bez DPH / jednorázovo</span></div>
+      </div>
+      <div style="background:#F6F8F6;border:1px solid #E4E9E4;border-radius:10px;padding:14px 20px;flex:1;min-width:140px">
+        <div style="font-size:12px;color:#56635B;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Trvanie</div>
+        <div style="font-family:'Archivo';font-weight:700;font-size:18px">max. 5 pracovných dní</div>
+      </div>
+    </div>
+    <p style="font-weight:700;font-size:15px;margin-bottom:14px;color:#14201A">Implementácia zahrňa:</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px">
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Tvorba prístupov a používateľských profilov</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Prispôsobenie dokumentov podľa vašich informácií</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Prispôsobenie e-mailov podľa dizajnu</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Úprava znenia pripomínacích SMS</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Import existujúcich kontaktov</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Nastavenie servisovaných značiek a modelov</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Predstavenie a zaučenie do nástroja</div>
+      <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:#2A332D"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2.2" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"/></svg>Prístup k textovým a video návodom</div>
+    </div>
+    <div style="background:#ECF6F0;border-radius:10px;padding:14px 18px;margin-bottom:24px;display:flex;gap:10px;align-items:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#11935A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span style="font-size:14px;font-weight:600;color:#0C6E43">90 dňová podpora po implementácii</span>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button onclick="closeModal('implementacia');openModal('technik')" style="flex:1;min-width:140px;background:#11935A;color:#fff;font-weight:700;font-size:15px;padding:13px;border:none;border-radius:11px;cursor:pointer;font-family:'Hanken Grotesk',sans-serif">Vybrať balík a pokračovať</button>
+      <button onclick="closeModal('implementacia')" style="flex:1;min-width:140px;background:#F6F8F6;color:#14201A;font-weight:600;font-size:15px;padding:13px;border:1px solid #E4E9E4;border-radius:11px;cursor:pointer;font-family:'Hanken Grotesk',sans-serif">Zatvoriť</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
