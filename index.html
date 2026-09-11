@@ -105,12 +105,12 @@
             pripomienku formou SMS a e-mailom, s možnosťou jednoduchej rezervácie termínu.
             Výrazne tak zvýšite počet objednaných servisov bez nutnosti manuálneho kontaktovania.
           </p>
-          <a href="#kontakt" class="btn fs-cta">Chcem automatizáciu</a>
         </div>
         <div class="fs-visual">
           <img src="design/images/automatizovana-komunikacia.png"
                alt="Automatizovaná komunikácia" class="fs-img" loading="lazy">
         </div>
+        <a href="#kontakt" class="btn fs-cta">Chcem automatizáciu</a>
       </div>
     </article>
 
@@ -125,12 +125,12 @@
             údajmi a zoznamom vykonaných aktivít sa odošle zákazníkovi na e-mail. Šetríte čas,
             tvoríte digitálny denník a vyhýbate sa manuálnej práci s dokumentami.
           </p>
-          <a href="#kontakt" class="btn fs-cta">Chcem digitalizovať</a>
         </div>
         <div class="fs-visual">
           <img src="design/images/protokoly.png"
                alt="Digitálne servisné protokoly" class="fs-img" loading="lazy">
         </div>
+        <a href="#kontakt" class="btn fs-cta">Chcem digitalizovať</a>
       </div>
     </article>
 
@@ -145,12 +145,12 @@
             mieste. Žiadne ručné vypisovanie, hľadanie starých papierových protokolov alebo lovenie
             v pamäti. Všetko archivované a prístupné kedykoľvek a kdekoľvek.
           </p>
-          <a href="#kontakt" class="btn fs-cta">Chcem mať prehľad</a>
         </div>
         <div class="fs-visual">
           <img src="design/images/crm.png"
                alt="CRM systém — prehľad zákazníkov" class="fs-img" loading="lazy">
         </div>
+        <a href="#kontakt" class="btn fs-cta">Chcem mať prehľad</a>
       </div>
     </article>
 
@@ -394,66 +394,87 @@
     <div class="pricing-grid">
 
       <!-- Technik -->
-      <div class="pricing-card">
-        <div>
-          <p class="pricing-name">Technik</p>
-          <p class="pricing-desc">Pre samostatného servisného alebo revízneho technika.</p>
+      <div class="pricing-card" data-collapsible>
+        <button type="button" class="pricing-header" aria-expanded="false" aria-controls="pricing-tech-details">
+          <div class="pricing-heading">
+            <p class="pricing-name">Technik</p>
+            <p class="pricing-desc">Pre samostatného servisného alebo revízneho technika.</p>
+          </div>
+          <div class="pricing-price">
+            <span class="currency">€</span>
+            <span class="amount">39</span>
+            <span class="period">/mes</span>
+          </div>
+          <span class="pricing-chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+        <div class="pricing-details" id="pricing-tech-details">
+          <ul class="pricing-features">
+            <li>Servisné alebo revízne protokoly do 1 minúty</li>
+            <li>Kompletný prehľad zákazníkov a zariadení</li>
+            <li>Automatické SMS a e-mail pripomienky pred ďalšou prehliadkou</li>
+            <li>Jednoduchá online objednávka zákazníka</li>
+            <li>Prispôsobenie systému vášmu názvu, logu, podpisu a pečiatky</li>
+          </ul>
+          <a href="#kontakt" class="btn pricing-cta btn-outline">Objednať</a>
         </div>
-        <div class="pricing-price">
-          <span class="currency">€</span>
-          <span class="amount">39</span>
-          <span class="period">/mes</span>
-        </div>
-        <ul class="pricing-features">
-          <li>Servisné alebo revízne protokoly do 1 minúty</li>
-          <li>Kompletný prehľad zákazníkov a zariadení</li>
-          <li>Automatické SMS a e-mail pripomienky pred ďalšou prehliadkou</li>
-          <li>Jednoduchá online objednávka zákazníka</li>
-          <li>Prispôsobenie systému vášmu názvu, logu, podpisu a pečiatky</li>
-        </ul>
-        <a href="#kontakt" class="btn pricing-cta btn-outline">Objednať</a>
       </div>
 
       <!-- Komplexný Technik — POPULAR -->
-      <div class="pricing-card popular">
-        <div>
-          <span class="popular-badge">Obľúbené</span>
-          <p class="pricing-name">Komplexný Technik</p>
-          <p class="pricing-desc">Pre všestranného technika, ktorý robí servis aj revízie.</p>
+      <div class="pricing-card popular" data-collapsible>
+        <button type="button" class="pricing-header" aria-expanded="false" aria-controls="pricing-kompl-details">
+          <div class="pricing-heading">
+            <span class="popular-badge">Obľúbené</span>
+            <p class="pricing-name">Komplexný Technik</p>
+            <p class="pricing-desc">Pre všestranného technika, ktorý robí servis aj revízie.</p>
+          </div>
+          <div class="pricing-price">
+            <span class="currency">€</span>
+            <span class="amount">49</span>
+            <span class="period">/mes</span>
+          </div>
+          <span class="pricing-chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+        <div class="pricing-details" id="pricing-kompl-details">
+          <ul class="pricing-features">
+            <li>Všetko z balíka Technik</li>
+            <li>Sledovanie rozdielnych lehôt pre servis a revíziu (napr. 12 a 6 mesiacov)</li>
+            <li>Rozdielne znenie a štruktúra protokolov pre každý typ služby</li>
+            <li>Prispôsobené pripomienkovanie pre každý typ prehliadky samostatne</li>
+          </ul>
+          <a href="#kontakt" class="btn pricing-cta">Objednať</a>
         </div>
-        <div class="pricing-price">
-          <span class="currency">€</span>
-          <span class="amount">49</span>
-          <span class="period">/mes</span>
-        </div>
-        <ul class="pricing-features">
-          <li>Všetko z balíka Technik</li>
-          <li>Sledovanie rozdielnych lehôt pre servis a revíziu (napr. 12 a 6 mesiacov)</li>
-          <li>Rozdielne znenie a štruktúra protokolov pre každý typ služby</li>
-          <li>Prispôsobené pripomienkovanie pre každý typ prehliadky samostatne</li>
-        </ul>
-        <a href="#kontakt" class="btn pricing-cta">Objednať</a>
       </div>
 
       <!-- Servisná Firma -->
-      <div class="pricing-card">
-        <div>
-          <p class="pricing-name">Servisná Firma</p>
-          <p class="pricing-desc">Pre menšiu firmu s viacerými technikmi a administratívou.</p>
+      <div class="pricing-card" data-collapsible>
+        <button type="button" class="pricing-header" aria-expanded="false" aria-controls="pricing-firma-details">
+          <div class="pricing-heading">
+            <p class="pricing-name">Servisná Firma</p>
+            <p class="pricing-desc">Pre menšiu firmu s viacerými technikmi a administratívou.</p>
+          </div>
+          <div class="pricing-price">
+            <span class="currency">€</span>
+            <span class="amount">59</span>
+            <span class="period">/mes</span>
+          </div>
+          <span class="pricing-chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </span>
+        </button>
+        <div class="pricing-details" id="pricing-firma-details">
+          <ul class="pricing-features">
+            <li>Všetko z balíka Komplexný Technik</li>
+            <li>Každý technik má svoj prístup, podpis, záznamy a iné</li>
+            <li>Spoločná firemná databáza zákazníkov a zariadení</li>
+            <li>Dizajn a znenie SMS a e-mailov na mieru</li>
+            <li>Prémiová podpora vašich požiadaviek</li>
+          </ul>
+          <a href="#kontakt" class="btn pricing-cta btn-outline">Objednať</a>
         </div>
-        <div class="pricing-price">
-          <span class="currency">€</span>
-          <span class="amount">59</span>
-          <span class="period">/mes</span>
-        </div>
-        <ul class="pricing-features">
-          <li>Všetko z balíka Komplexný Technik</li>
-          <li>Každý technik má svoj prístup, podpis, záznamy a iné</li>
-          <li>Spoločná firemná databáza zákazníkov a zariadení</li>
-          <li>Dizajn a znenie SMS a e-mailov na mieru</li>
-          <li>Prémiová podpora vašich požiadaviek</li>
-        </ul>
-        <a href="#kontakt" class="btn pricing-cta btn-outline">Objednať</a>
       </div>
 
     </div>

@@ -43,6 +43,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 img, svg {
@@ -298,6 +299,7 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   color: var(--stone);
   margin-bottom: 48px;
   max-width: 540px;
+  overflow-wrap: break-word;
 }
 
 .hero-actions {
@@ -1285,11 +1287,15 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   padding: 64px 0;
 }
 
-/* ---- Hero visual — floating screenshots ---- */
+.hero-content, .hero-visual { min-width: 0; max-width: 100%; }
+.hero-content > * { max-width: 100%; }
+.hero-content h1, .hero-content .hero-subtitle { word-wrap: break-word; overflow-wrap: break-word; }
+
+/* ---- Hero visual — Lottie container ---- */
 .hero-visual {
-  display: none; /* hidden on mobile */
+  display: block;
   position: relative;
-  height: 480px;
+  width: 100%;
 }
 
 .hv-card {
@@ -1712,27 +1718,36 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 }
 
 /* =====================================================
-   NEW: Dynamic Island header
+   NEW: Dynamic Island header — mobile + desktop
    ===================================================== */
-@media (min-width: 900px) {
+.site-header.island { padding-top: 10px; }
+.site-header.island .header-shell {
+  max-width: calc(100vw - 24px);
+  background-color: rgba(15, 14, 13, 0.94);
+  border: 0;
+  border-radius: 999px;
+  padding: 0 18px;
+  box-shadow:
+    0 8px 32px rgba(15, 14, 13, 0.22),
+    0 2px 8px rgba(15, 14, 13, 0.12);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+.site-header.island .header-inner { height: 50px; }
+.site-header.island .logo-img {
+  height: 28px;
+  filter: brightness(0) invert(1);
+}
+.site-header.island .hamburger span { background: #fff; }
+
+@media (min-width: 768px) {
   .site-header.island { padding-top: 12px; }
   .site-header.island .header-shell {
     max-width: 720px;
-    background-color: rgba(15, 14, 13, 0.94);
-    border: 0;
-    border-radius: 999px;
     padding: 0 22px;
-    box-shadow:
-      0 8px 32px rgba(15, 14, 13, 0.22),
-      0 2px 8px rgba(15, 14, 13, 0.12);
-    backdrop-filter: blur(18px) saturate(160%);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
   }
   .site-header.island .header-inner { height: 54px; }
-  .site-header.island .logo-img {
-    height: 30px;
-    filter: brightness(0) invert(1);
-  }
+  .site-header.island .logo-img { height: 30px; }
   .site-header.island .nav-desktop a {
     color: rgba(255, 255, 255, 0.78);
   }
@@ -1751,7 +1766,7 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
    ===================================================== */
 .hero-lottie {
   width: 100%;
-  max-width: 520px;
+  max-width: 380px;
   margin: 0 auto;
   aspect-ratio: 1 / 1;
 }
@@ -1877,9 +1892,17 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 @media (min-width: 768px) {
   .fs-card-inner {
     grid-template-columns: 0.9fr 1.1fr;
+    grid-template-areas:
+      "text visual"
+      "cta  visual";
+    grid-template-rows: 1fr auto;
     gap: 40px;
     padding: 56px 48px;
+    align-items: center;
   }
+  .fs-text   { grid-area: text; }
+  .fs-visual { grid-area: visual; align-self: center; }
+  .fs-cta    { grid-area: cta; justify-self: flex-start; align-self: flex-start; }
   .feat-stack-card { min-height: 480px; }
 }
 
@@ -1897,11 +1920,22 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 
 @media (max-width: 767px) {
   .feat-stack-card {
-    position: relative;
-    top: auto;
-    min-height: 0;
+    top: 80px;
+    min-height: auto;
     margin-bottom: 20px;
+    border-radius: 22px;
   }
+  .fs-card-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 32px 22px;
+  }
+  .fs-title { font-size: 26px; margin-bottom: 14px; }
+  .fs-desc { font-size: 15px; margin-bottom: 0; }
+  .fs-eyebrow { margin-bottom: 14px; }
+  .fs-cta { width: 100%; }
+  .feat-stack { padding: 60px 0 80px; }
+  .feat-stack-intro { margin-bottom: 40px; }
 }
 
 /* =====================================================
@@ -2017,6 +2051,19 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   max-width: 480px;
 }
 
+/* Mobile: equipment 1-column so brand pills breathe */
+@media (max-width: 767px) {
+  .equipment-grid { grid-template-columns: 1fr; gap: 12px; }
+  .equipment-item { min-height: 128px; padding: 20px; }
+  .eq-front { gap: 12px; padding: 20px; flex-direction: row; justify-content: flex-start; }
+  .eq-front img { width: 36px; height: 36px; flex-shrink: 0; }
+  .eq-name { font-size: 15px; }
+  .eq-back { padding: 16px 20px; gap: 10px; }
+  .eq-brands { gap: 6px 8px; justify-content: flex-start; }
+  .eq-brands li { font-size: 12px; padding: 4px 10px; }
+  .equipment-item .eq-back-label { align-self: flex-start; }
+}
+
 /* Old .equipment-item:hover translate is now redundant — override to stop card lifting on hover */
 .equipment-item:hover {
   transform: none;
@@ -2047,4 +2094,90 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 .features-inner {
   position: relative;
   top: auto;
+}
+
+/* =====================================================
+   NEW: Pricing accordion — mobile only
+   ===================================================== */
+.pricing-header {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.pricing-heading { display: block; }
+
+.pricing-chevron {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--stone);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pricing-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  flex: 1;
+}
+
+@media (max-width: 767px) {
+  .pricing-card {
+    padding: 0;
+    overflow: hidden;
+    gap: 0;
+  }
+  .pricing-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: "info price chevron";
+    align-items: center;
+    gap: 14px;
+    padding: 22px 20px;
+    cursor: pointer;
+    text-align: left;
+  }
+  .pricing-heading { grid-area: info; }
+  .pricing-header .pricing-price { grid-area: price; }
+  .pricing-chevron { grid-area: chevron; display: inline-flex; }
+
+  .pricing-header .pricing-price .amount { font-size: 34px; }
+  .pricing-header .pricing-price .currency { font-size: 18px; }
+  .pricing-header .pricing-price .period { font-size: 12px; }
+  .pricing-header .pricing-desc { margin-top: 2px; font-size: 13px; }
+  .pricing-header .popular-badge { margin-bottom: 8px; }
+
+  .pricing-card.expanded .pricing-chevron { transform: rotate(180deg); }
+
+  .pricing-details {
+    max-height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: var(--s3);
+  }
+  .pricing-card.expanded .pricing-details {
+    max-height: 800px;
+    padding: 4px 20px 22px;
+    border-top: 1px solid var(--border);
+  }
+  .pricing-card.popular.expanded .pricing-details { border-top-color: rgba(15,14,13,0.15); }
+}
+
+/* Desktop: header/details flatten back into vertical card content */
+@media (min-width: 768px) {
+  .pricing-card { padding: var(--s4); }
+  .pricing-header { padding: 0; }
+  .pricing-chevron { display: none; }
+  .pricing-details {
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
 }

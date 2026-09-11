@@ -191,39 +191,21 @@ if (heroLottieEl && window.lottie) {
 }
 
 // =====================
-// FEATURES — Stacked Cards (Sketchzlab-style scale-down)
+// FEATURES — Stacked Cards (Sketchzlab-style, sticky handled by CSS)
 // =====================
 const stackCards = document.querySelectorAll('.feat-stack-card');
-if (stackCards.length > 1) {
-  const mm = gsap.matchMedia();
-
-  mm.add('(min-width: 768px)', () => {
-    stackCards.forEach(card => {
-      // One-shot entrance fade-up; sticky stacking is handled purely by CSS
-      gsap.fromTo(card,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: card, start: 'top 85%', once: true },
-        }
-      );
-    });
-  });
-
-  mm.add('(max-width: 767px)', () => {
-    stackCards.forEach(card => {
-      gsap.fromTo(card,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0,
-          duration: 0.55,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: card, start: 'top 88%', once: true },
-        }
-      );
-    });
+if (stackCards.length) {
+  // Unified fade-up entrance on all viewports; CSS position:sticky handles stacking
+  stackCards.forEach(card => {
+    gsap.fromTo(card,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+      }
+    );
   });
 }
 
@@ -435,3 +417,35 @@ if (contactForm) {
     messageEl.textContent = '';
   }
 }
+
+// =====================
+// Pricing accordion (mobile only)
+// =====================
+const pricingMM = gsap.matchMedia();
+pricingMM.add('(max-width: 767px)', () => {
+  const cards = document.querySelectorAll('.pricing-card[data-collapsible]');
+  const handlers = [];
+  cards.forEach(card => {
+    const header = card.querySelector('.pricing-header');
+    if (!header) return;
+    // Populárnu kartu otvor default
+    if (card.classList.contains('popular')) {
+      card.classList.add('expanded');
+      header.setAttribute('aria-expanded', 'true');
+    }
+    const onClick = () => {
+      const expanded = card.classList.toggle('expanded');
+      header.setAttribute('aria-expanded', String(expanded));
+    };
+    header.addEventListener('click', onClick);
+    handlers.push({ header, onClick });
+  });
+  return () => {
+    handlers.forEach(({ header, onClick }) => header.removeEventListener('click', onClick));
+    cards.forEach(c => {
+      c.classList.remove('expanded');
+      const h = c.querySelector('.pricing-header');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    });
+  };
+});
