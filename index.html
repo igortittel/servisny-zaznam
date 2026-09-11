@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servisný Záznam — Moderná správa zákazníkov pre servisných technikov</title>
+  <meta name="description" content="Komplexné riešenie pre servisných technikov a servisné firmy. Automatické pripomienky, digitálne protokoly a CRM systém na jednom mieste.">
+  <link rel="canonical" href="https://www.servisnyzaznam.sk/">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- =====================
+     HEADER — Dynamic Island
+     ===================== -->
+<header class="site-header" id="top">
+  <div class="header-shell">
+    <div class="container header-container">
+      <div class="header-inner">
+        <a href="#top" class="logo" aria-label="Servisný Záznam — domov">
+          <img src="design/servisny-zaznam-logo.svg" alt="Servisný Záznam" class="logo-img">
+        </a>
+
+        <nav class="nav-desktop" aria-label="Hlavná navigácia">
+          <a href="#sluzba">Služby</a>
+          <a href="#cennik">Cenník</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+
+        <a href="#cennik" class="btn header-cta">Objednať</a>
+
+        <button class="hamburger" aria-label="Otvoriť menu" aria-expanded="false" aria-controls="mobileNav">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-mobile" id="mobileNav" aria-label="Mobilná navigácia">
+    <div class="nav-mobile-inner">
+      <a href="#sluzba">Služby</a>
+      <a href="#cennik">Cenník</a>
+      <a href="#kontakt">Kontakt</a>
+      <div class="nav-cta-wrap">
+        <a href="#cennik" class="btn">Objednať</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="header-spacer" aria-hidden="true"></div>
+
+
+<!-- =====================
+     HERO
+     ===================== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-layout">
+
+      <!-- Left: text -->
+      <div class="hero-content">
+        <span class="hero-label hero-animate">Platforma pre servisných technikov</span>
+        <h1 class="hero-animate">Moderná správa zákazníkov<br>pre vašu firmu.</h1>
+        <p class="hero-subtitle hero-animate">
+          Komplexné riešenie pre servisných technikov alebo servisné firmy.
+          Automatizujte pripomienky, digitalizujte dokumenty a majte prehľad o zákazníkoch.
+        </p>
+        <div class="hero-actions">
+          <a href="#cennik" class="btn hero-animate">Vybrať balíček</a>
+          <a href="#sluzba" class="btn btn-outline hero-animate">Zistiť viac</a>
+        </div>
+      </div>
+
+      <!-- Right: Lottie animation -->
+      <div class="hero-visual hero-animate" aria-hidden="true">
+        <div class="hero-lottie" id="heroLottie"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     FEATURES — STACKED CARDS (Sketchzlab-style)  (#sluzba)
+     ===================== -->
+<section class="feat-stack" id="sluzba">
+  <div class="container feat-stack-container">
+
+    <div class="feat-stack-intro">
+      <span class="eyebrow">Efektívna správa</span>
+      <h2>Všetko, čo servisný technik<br>skutočne potrebuje</h2>
+    </div>
+
+    <!-- Card 1 -->
+    <article class="feat-stack-card" data-idx="0">
+      <div class="fs-card-inner">
+        <div class="fs-text">
+          <span class="fs-eyebrow">01 · Pripomienky servisu</span>
+          <h3 class="fs-title">Automatické<br>pripomienky servisu</h3>
+          <p class="fs-desc">
+            Systém sleduje termíny servisných prehliadok a zákazníkom automaticky pošle
+            pripomienku formou SMS a e-mailom, s možnosťou jednoduchej rezervácie termínu.
+            Výrazne tak zvýšite počet objednaných servisov bez nutnosti manuálneho kontaktovania.
+          </p>
+          <a href="#kontakt" class="btn fs-cta">Chcem automatizáciu</a>
+        </div>
+        <div class="fs-visual">
+          <img src="design/images/automatizovana-komunikacia.png"
+               alt="Automatizovaná komunikácia" class="fs-img" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="feat-stack-card" data-idx="1">
+      <div class="fs-card-inner">
+        <div class="fs-text">
+          <span class="fs-eyebrow">02 · Digitálne dokumenty</span>
+          <h3 class="fs-title">Digitálny záznam<br>a servisný protokol</h3>
+          <p class="fs-desc">
+            Po dokončení servisu sa protokol a záznam okamžite vygeneruje a spolu s nameranými
+            údajmi a zoznamom vykonaných aktivít sa odošle zákazníkovi na e-mail. Šetríte čas,
+            tvoríte digitálny denník a vyhýbate sa manuálnej práci s dokumentami.
+          </p>
+          <a href="#kontakt" class="btn fs-cta">Chcem digitalizovať</a>
+        </div>
+        <div class="fs-visual">
+          <img src="design/images/protokoly.png"
+               alt="Digitálne servisné protokoly" class="fs-img" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="feat-stack-card" data-idx="2">
+      <div class="fs-card-inner">
+        <div class="fs-text">
+          <span class="fs-eyebrow">03 · CRM systém</span>
+          <h3 class="fs-title">Prehľad o vašich<br>zákazníkoch</h3>
+          <p class="fs-desc">
+            Všetky informácie o zákazníkoch a ich zariadeniach máte prehľadne uložené na jednom
+            mieste. Žiadne ručné vypisovanie, hľadanie starých papierových protokolov alebo lovenie
+            v pamäti. Všetko archivované a prístupné kedykoľvek a kdekoľvek.
+          </p>
+          <a href="#kontakt" class="btn fs-cta">Chcem mať prehľad</a>
+        </div>
+        <div class="fs-visual">
+          <img src="design/images/crm.png"
+               alt="CRM systém — prehľad zákazníkov" class="fs-img" loading="lazy">
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- =====================
+     EQUIPMENT TYPES
+     ===================== -->
+<section class="equipment section">
+  <div class="container">
+    <div class="equipment-intro">
+      <span class="eyebrow">Kompatibilné zariadenia</span>
+      <h2>Pre ktoré typy zariadení<br>je systém určený?</h2>
+      <p class="equipment-hint">Prejdite myšou (alebo klepnite) na kartu a pozrite si kompatibilné značky.</p>
+    </div>
+
+    <div class="equipment-grid">
+      <button class="equipment-item" type="button" aria-expanded="false">
+        <div class="eq-front">
+          <img src="design/icons 2/plynove-kotly.svg" alt="" aria-hidden="true">
+          <span class="eq-name">Plynové kotly</span>
+        </div>
+        <div class="eq-back">
+          <span class="eq-back-label">Kompatibilné značky</span>
+          <ul class="eq-brands">
+            <li>Buderus</li><li>Bosch</li><li>Viessmann</li><li>Vaillant</li><li>Protherm</li><li>Junkers</li><li>Immergas</li><li>Baxi</li>
+          </ul>
+        </div>
+      </button>
+
+      <button class="equipment-item" type="button" aria-expanded="false">
+        <div class="eq-front">
+          <img src="design/icons 2/elektrokotly.svg" alt="" aria-hidden="true">
+          <span class="eq-name">Elektrokotly</span>
+        </div>
+        <div class="eq-back">
+          <span class="eq-back-label">Kompatibilné značky</span>
+          <ul class="eq-brands">
+            <li>Protherm</li><li>Bosch</li><li>Vaillant</li><li>Kospel</li><li>Dakon</li><li>Termo</li>
+          </ul>
+        </div>
+      </button>
+
+      <button class="equipment-item" type="button" aria-expanded="false">
+        <div class="eq-front">
+          <img src="design/icons 2/tepelne-cerpadla.svg" alt="" aria-hidden="true">
+          <span class="eq-name">Tepelné čerpadlá</span>
+        </div>
+        <div class="eq-back">
+          <span class="eq-back-label">Kompatibilné značky</span>
+          <ul class="eq-brands">
+            <li>Vaillant</li><li>Viessmann</li><li>Daikin</li><li>LG</li><li>Stiebel Eltron</li><li>NIBE</li><li>Bosch</li><li>Panasonic</li>
+          </ul>
+        </div>
+      </button>
+
+      <button class="equipment-item" type="button" aria-expanded="false">
+        <div class="eq-front">
+          <img src="design/icons 2/klimatizacie.svg" alt="" aria-hidden="true">
+          <span class="eq-name">Klimatizácie</span>
+        </div>
+        <div class="eq-back">
+          <span class="eq-back-label">Kompatibilné značky</span>
+          <ul class="eq-brands">
+            <li>Daikin</li><li>Mitsubishi</li><li>LG</li><li>Samsung</li><li>Panasonic</li><li>Toshiba</li><li>Gree</li><li>Sinclair</li>
+          </ul>
+        </div>
+      </button>
+
+      <button class="equipment-item" type="button" aria-expanded="false">
+        <div class="eq-front">
+          <img src="design/icons 2/elektricke-ohrievace.svg" alt="" aria-hidden="true">
+          <span class="eq-name">Elektrické ohrievače</span>
+        </div>
+        <div class="eq-back">
+          <span class="eq-back-label">Kompatibilné značky</span>
+          <ul class="eq-brands">
+            <li>Tatramat</li><li>Dražice</li><li>Ariston</li><li>Stiebel Eltron</li><li>Kospel</li><li>Bosch</li>
+          </ul>
+        </div>
+      </button>
+
+      <button class="equipment-item" type="button" aria-expanded="false">
+        <div class="eq-front">
+          <img src="design/icons 2/plynove-ohrievace.svg" alt="" aria-hidden="true">
+          <span class="eq-name">Plynové ohrievače</span>
+        </div>
+        <div class="eq-back">
+          <span class="eq-back-label">Kompatibilné značky</span>
+          <ul class="eq-brands">
+            <li>Junkers</li><li>Bosch</li><li>Ariston</li><li>Vaillant</li><li>Beretta</li><li>Immergas</li>
+          </ul>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     AUDIENCE — PRE KOHO
+     ===================== -->
+<section class="audience section">
+  <div class="container">
+    <div class="audience-intro">
+      <span class="eyebrow">Pre koho je systém</span>
+      <h2>Postavené pre ľudí, ktorí<br>radšej robia ako vypisujú</h2>
+      <p class="section-lead">Samostatní technici aj celé servisné firmy s viacerými pracovníkmi v jednom systéme.</p>
+    </div>
+
+    <div class="audience-grid">
+      <button class="audience-card" data-popup="kurenari" aria-haspopup="dialog">
+        <img src="design/icons 2/kurenari.svg" alt="" aria-hidden="true">
+        <h3>Kurenári</h3>
+        <span class="audience-hint">Zistiť viac</span>
+      </button>
+      <button class="audience-card" data-popup="klimatizeri" aria-haspopup="dialog">
+        <img src="design/icons 2/klimatizeri.svg" alt="" aria-hidden="true">
+        <h3>Klimatizéri</h3>
+        <span class="audience-hint">Zistiť viac</span>
+      </button>
+      <button class="audience-card" data-popup="revizni-technici" aria-haspopup="dialog">
+        <img src="design/icons 2/revizni-technici.svg" alt="" aria-hidden="true">
+        <h3>Revízni technici</h3>
+        <span class="audience-hint">Zistiť viac</span>
+      </button>
+      <button class="audience-card" data-popup="servisne-firmy" aria-haspopup="dialog">
+        <img src="design/icons 2/servisne-firmy.svg" alt="" aria-hidden="true">
+        <h3>Celé servisné firmy</h3>
+        <span class="audience-hint">Zistiť viac</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     EXTRA BENEFITS
+     ===================== -->
+<section class="extra-benefits section">
+  <div class="container">
+    <div class="extra-benefits-intro">
+      <h2>Čo všetko systém<br>zmení pre vás</h2>
+    </div>
+
+    <ul class="benefits-list">
+      <li class="benefit-item">
+        <span class="benefit-num" aria-hidden="true">01</span>
+        <div class="benefit-body">
+          <h3>Už žiadne zabudnuté revízie</h3>
+          <p>So systémom pripomínania termínu obhliadky môžete zabudnúť na to, že zabudnete na dohodnutý termín u zákazníka.</p>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-num" aria-hidden="true">02</span>
+        <div class="benefit-body">
+          <h3>Lepšia spokojnosť zákazníkov</h3>
+          <p>Vďaka SMS a e-mailovým pripomienkam si váš zákazník dohodne termín obhliadky na pár klikov, kedykoľvek a kdekoľvek sa nachádza.</p>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-num" aria-hidden="true">03</span>
+        <div class="benefit-body">
+          <h3>Menej administratívy, viac objednávok</h3>
+          <p>Vďaka elektronickým dokumentom a ich automatickému odosielaniu zákazníkovi ušetríte denne až dve hodiny času.</p>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-num" aria-hidden="true">04</span>
+        <div class="benefit-body">
+          <h3>100% súlad s legislatívou</h3>
+          <p>Všetky dokumenty sú pravidelne aktualizované tak, aby vyhovovali aktuálnej legislatíve.</p>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <span class="benefit-num" aria-hidden="true">05</span>
+        <div class="benefit-body">
+          <h3>Vaša firma pôsobí profesionálne</h3>
+          <p>Prispôsobením dizajnu e-mailov pôsobíte na zákazníka profesionálne. Pri nastavení účtu sa postaráme o všetko od A po Z na mieru.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- =====================
+     PROCESS STEPS
+     ===================== -->
+<section class="process section">
+  <div class="container">
+    <div class="process-intro">
+      <span class="eyebrow">Ako to funguje</span>
+      <h2>Začnete za 5 pracovných dní</h2>
+    </div>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="step-num">01</span>
+        <div class="step-body">
+          <h3>Vyberiete si balíček</h3>
+          <p>Jednoducho si vyberiete želaný balíček služieb a zaregistrujete sa prostredníctvom kontaktného formulára.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">02</span>
+        <div class="step-body">
+          <h3>Pripravíme účet na mieru</h3>
+          <p>My pripravíme a nastavíme účet podľa vašich požiadaviek — logo, dokumenty, SMS texty, import kontaktov aj zaučenie.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">03</span>
+        <div class="step-body">
+          <h3>Hotovo, môžete začať</h3>
+          <p>Všetko je pripravené pre pohodlné používanie. Prevezmete fungujúci systém a ihneď pracujete naplno.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="process-cta">
+      <a href="#cennik" class="btn">Vybrať balíček</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     PRICING  (#cennik)
+     ===================== -->
+<section class="pricing section" id="cennik">
+  <div class="container">
+    <div class="pricing-intro">
+      <span class="eyebrow">Cenník</span>
+      <h2>Transparentné ceny,<br>žiadne prekvapenia</h2>
+      <p class="section-lead">Uvedenné ceny sú bez DPH a nezahŕňajú jednorázový implementačný poplatok.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Technik -->
+      <div class="pricing-card">
+        <div>
+          <p class="pricing-name">Technik</p>
+          <p class="pricing-desc">Pre samostatného servisného alebo revízneho technika.</p>
+        </div>
+        <div class="pricing-price">
+          <span class="currency">€</span>
+          <span class="amount">39</span>
+          <span class="period">/mes</span>
+        </div>
+        <ul class="pricing-features">
+          <li>Servisné alebo revízne protokoly do 1 minúty</li>
+          <li>Kompletný prehľad zákazníkov a zariadení</li>
+          <li>Automatické SMS a e-mail pripomienky pred ďalšou prehliadkou</li>
+          <li>Jednoduchá online objednávka zákazníka</li>
+          <li>Prispôsobenie systému vášmu názvu, logu, podpisu a pečiatky</li>
+        </ul>
+        <a href="#kontakt" class="btn pricing-cta btn-outline">Objednať</a>
+      </div>
+
+      <!-- Komplexný Technik — POPULAR -->
+      <div class="pricing-card popular">
+        <div>
+          <span class="popular-badge">Obľúbené</span>
+          <p class="pricing-name">Komplexný Technik</p>
+          <p class="pricing-desc">Pre všestranného technika, ktorý robí servis aj revízie.</p>
+        </div>
+        <div class="pricing-price">
+          <span class="currency">€</span>
+          <span class="amount">49</span>
+          <span class="period">/mes</span>
+        </div>
+        <ul class="pricing-features">
+          <li>Všetko z balíka Technik</li>
+          <li>Sledovanie rozdielnych lehôt pre servis a revíziu (napr. 12 a 6 mesiacov)</li>
+          <li>Rozdielne znenie a štruktúra protokolov pre každý typ služby</li>
+          <li>Prispôsobené pripomienkovanie pre každý typ prehliadky samostatne</li>
+        </ul>
+        <a href="#kontakt" class="btn pricing-cta">Objednať</a>
+      </div>
+
+      <!-- Servisná Firma -->
+      <div class="pricing-card">
+        <div>
+          <p class="pricing-name">Servisná Firma</p>
+          <p class="pricing-desc">Pre menšiu firmu s viacerými technikmi a administratívou.</p>
+        </div>
+        <div class="pricing-price">
+          <span class="currency">€</span>
+          <span class="amount">59</span>
+          <span class="period">/mes</span>
+        </div>
+        <ul class="pricing-features">
+          <li>Všetko z balíka Komplexný Technik</li>
+          <li>Každý technik má svoj prístup, podpis, záznamy a iné</li>
+          <li>Spoločná firemná databáza zákazníkov a zariadení</li>
+          <li>Dizajn a znenie SMS a e-mailov na mieru</li>
+          <li>Prémiová podpora vašich požiadaviek</li>
+        </ul>
+        <a href="#kontakt" class="btn pricing-cta btn-outline">Objednať</a>
+      </div>
+
+    </div>
+
+    <div class="pricing-footer">
+      <div class="pricing-notes">
+        <p>Uvedené ceny sú bez DPH.</p>
+        <p>Balíčky nezahŕňajú jednorázový implementačný poplatok.</p>
+      </div>
+      <button class="impl-btn" aria-haspopup="dialog" aria-controls="implementaciaModal">
+        Čo zahŕňa implementácia systému? →
+      </button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     TESTIMONIALS
+     ===================== -->
+<section class="testimonials section">
+  <div class="container">
+    <div class="testimonials-intro">
+      <span class="eyebrow">Referencie</span>
+      <h2>Servisní technici, ktorí prestali<br>vypisovať papiere</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars" aria-label="5 hviezdičiek">
+          <span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          <span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          <span aria-hidden="true">★</span>
+        </div>
+        <p class="testimonial-quote">Riešenie mi vyhovuje, efektívnejšie plánujem a teda aj servisujem svojich klientov</p>
+        <p class="testimonial-author">Matúš Luščan — Plynotechna</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars" aria-label="5 hviezdičiek">
+          <span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          <span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          <span aria-hidden="true">★</span>
+        </div>
+        <p class="testimonial-quote">Najviac oceňujem digitálne dokumenty. Záznam už nevypisujem. Zákazník ho má skôr, než si zbalím veci.</p>
+        <p class="testimonial-author">Vavrotherm</p>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars" aria-label="5 hviezdičiek">
+          <span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          <span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          <span aria-hidden="true">★</span>
+        </div>
+        <p class="testimonial-quote">Máme históriu každého kotla — konečne vieme, čo sa robilo a čo treba pri najbližšom servise spraviť.</p>
+        <p class="testimonial-author">Revitherm</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     CUSTOM SOLUTION CTA
+     ===================== -->
+<section class="custom-solution">
+  <div class="container">
+    <h2>Potrebujete individuálne<br>riešenie na mieru?</h2>
+    <p class="section-lead">Kontaktujte nás a radi vám pomôžeme s vašimi konkrétnymi potrebami.</p>
+    <a href="#kontakt" class="btn btn-surface">Napísať nám</a>
+  </div>
+</section>
+
+
+<!-- =====================
+     CONTACT FORM  (#kontakt)
+     ===================== -->
+<section class="contact section" id="kontakt">
+  <div class="container">
+    <div class="contact-inner">
+
+      <div class="contact-info">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Napíšte nám</h2>
+        <p>Máte otázky alebo záujem o niektorý z balíčkov? Napíšte nám a ozveme sa vám čo najskôr.</p>
+        <div class="contact-detail">
+          <a href="tel:+421919208569">+421 919 208 569</a>
+          <a href="mailto:servisny@zaznam.sk">servisny@zaznam.sk</a>
+        </div>
+      </div>
+
+      <form class="form" id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="meno">Meno <span aria-hidden="true">*</span></label>
+            <input type="text" id="meno" name="meno" placeholder="Ján" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="priezvisko">Priezvisko <span aria-hidden="true">*</span></label>
+            <input type="text" id="priezvisko" name="priezvisko" placeholder="Novák" required autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">E-mail <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" name="email" placeholder="jan.novak@firma.sk" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="telefon">Telefónne číslo <span aria-hidden="true">*</span></label>
+            <input type="tel" id="telefon" name="telefon" placeholder="+421 900 000 000" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="spolocnost">Názov spoločnosti</label>
+          <input type="text" id="spolocnost" name="spolocnost" placeholder="Moja firma s.r.o." autocomplete="organization">
+        </div>
+
+        <div class="form-group">
+          <label for="poznamka">Poznámka</label>
+          <textarea id="poznamka" name="poznamka" placeholder="Vaša správa alebo otázka…" rows="4"></textarea>
+        </div>
+
+        <label class="form-gdpr">
+          <input type="checkbox" id="gdprCheck" name="gdpr" required>
+          <span>Súhlasím so <a href="spracovanie-osobnych-udajov.html" target="_blank" rel="noopener">spracovaním osobných údajov</a>.</span>
+        </label>
+
+        <div class="form-message" role="alert" aria-live="polite"></div>
+
+        <button type="submit" class="btn form-submit">Odoslať</button>
+      </form>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- =====================
+     FOOTER
+     ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="design/servisny-zaznam-logo.svg" alt="Servisný Záznam" class="footer-logo">
+        <p class="footer-tagline">
+          Servisný Záznam je vytvorený pre servisných technikov, ktorí sa chcú
+          zbaviť zbytočnej administratívy a mať poriadok vo svojich zákazníkoch
+          aj vykonaných servisoch.
+        </p>
+        <div class="footer-social">
+          <a href="#" rel="noopener noreferrer" aria-label="Facebook">Facebook</a>
+          <a href="#" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
+          <a href="#" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        </div>
+      </div>
+
+      <div class="footer-contact">
+        <p class="footer-contact-label">Kontakt</p>
+        <a href="tel:+421919208569">+421 919 208 569</a>
+        <a href="mailto:servisny@zaznam.sk">servisny@zaznam.sk</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; <span id="footerYear"></span> Servisnyzaznam.sk by Kanos</p>
+      <a href="spracovanie-osobnych-udajov.html">Spracovanie osobných údajov</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- =====================
+     AUDIENCE POPUP
+     ===================== -->
+<div class="aud-overlay" id="audPopup" role="dialog" aria-modal="true" aria-labelledby="audTitle">
+  <div class="aud-popup">
+    <button class="aud-close" aria-label="Zavrieť">✕</button>
+    <div class="aud-icon-wrap">
+      <img id="audIcon" src="" alt="" class="aud-icon">
+    </div>
+    <h3 id="audTitle" class="aud-title"></h3>
+    <p id="audDesc" class="aud-desc"></p>
+    <a href="#kontakt" class="btn aud-cta">Mám záujem</a>
+  </div>
+</div>
+
+
+<!-- =====================
+     IMPLEMENTATION MODAL
+     ===================== -->
+<div class="modal-overlay" id="implementaciaModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="modal-close" aria-label="Zavrieť">✕</button>
+
+    <h3 id="modalTitle">Implementácia systému</h3>
+
+    <div class="modal-price-wrap">
+      <span class="modal-currency">€</span>
+      <span class="modal-amount">499</span>
+    </div>
+    <p class="modal-price-note">bez DPH / jednorazovo</p>
+
+    <p class="modal-duration">Trvanie: max. 5 pracovných dní</p>
+
+    <ul class="modal-features">
+      <li>Tvorba prístupov a používateľských profilov</li>
+      <li>Prispôsobenie digitálnych dokumentov podľa klientských informácií</li>
+      <li>Prispôsobenie e-mailov podľa dizajnu</li>
+      <li>Úprava znenia pripomínacích SMS</li>
+      <li>Import existujúcich kontaktov</li>
+      <li>Nastavenie servisovaných značiek a modelov</li>
+      <li>Predstavenie a zaučenie do nástroja</li>
+      <li>Prístup k textovým a video návodom</li>
+      <li>90-dňová podpora</li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- GSAP + Lottie CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+  // Footer year
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

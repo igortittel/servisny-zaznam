@@ -1,0 +1,194 @@
+SERVISNYZAZNAM.SK — TEXTOVÝ EXPORT OBSAHU (v2 — upravené)
+URL: https://www.servisnyzaznam.sk/
+Dátum: 10.9.2026
+====================================================
+
+TITULOK / TAGLINE
+--------------------
+Moderná správa zákazníkov pre vašu firmu
+Komplexné riešenie pre servisných technikov alebo servisné firmy.
+
+NAVIGÁCIA
+--------------------
+- Služby (#sluzba)
+- Cenník (#cennik)
+- Kontakt (#kontakt)
+
+====================================================
+BENEFITY SYSTÉMU
+====================================================
+Efektívne šetrenie času, organizácia zákazníkov a automatizované upozornenia na servis.
+Navyše digitalizácia servisných záznamov a protokol na jednom mieste.
+
+1) Automatické pripomienky servisu
+2) Servisné záznamy a protokoly v digitálnej podobe
+3) Databáza vašich zákazníkov a zariadení
+
+----------------------------------------------------
+BENEFIT 1: AUTOMATIZOVANÁ KOMUNIKÁCIA (eyebrow: pripomenutie servisu)
+----------------------------------------------------
+Náš systém sleduje termíny servisných prehliadok a zákazníkom automaticky pošle
+pripomienku formou SMS a e-mailom, s možnosťou jednoduchej rezervácie termínu servisu.
+Výrazne tak zvýšite počet objednaných servisov bez nutnosti manuálneho kontaktovania.
+CTA: Chcem automatizáciu
+
+----------------------------------------------------
+BENEFIT 2: DIGITÁLNY SERVISNÝ ZÁZNAM A PROTOKOL (eyebrow: digitálne dokumenty)
+----------------------------------------------------
+Po dokončení servisu sa protokol a záznam okamžite vygeneruje a spolu s nameranými
+údajmi a zoznamom vykonaných aktivít sa odošle zákazníkovi na jeho e-mailovú adresu.
+Šetríte tak čas, tvoríte digitálny servisný denník zariadení a vyhýbate sa manuálnej práci
+s dokumentami.
+CTA: Chcem digitalizovať
+
+----------------------------------------------------
+BENEFIT 3: PREHĽAD O VAŠICH ZÁKAZNÍKOCH (eyebrow: CRM systém)
+----------------------------------------------------
+Všetky informácie o zákazníkoch a ich zariadeniach máte prehľadne uložené na jednom
+mieste. Už žiadne ručné vypisovanie, hľadanie starých papierových protokolov alebo
+lovenie v pamäti. Všetko máte archivované a prístupné kedykoľvek a kdekoľvek
+prostredníctvom vášho mobilného zariadenia alebo počítaču.
+CTA: Chcem mať prehľad
+
+----------------------------------------------------
+PRE KTORÉ TYPY ZARIADENÍ JE SYSTÉM URČENÝ
+----------------------------------------------------
+- Plynové kotly
+- Elektrokotly
+- Tepelné čerpadlá
+- Klimatizácie
+- Elektrické a plynové ohrievače
+
+----------------------------------------------------
+ĎALŠIE BENEFITY (bulleted)
+----------------------------------------------------
+- Už žiadne zabudnuté revízie
+  So systémom pripomínania termínu obhliadky môžete zabudnúť na to, že zabudnete
+  na dohodnutý termín u zákazníka.
+
+- Lepšia spokojnosť zákazníkov
+  Vďaka SMS a e-mailovým pripomienkam si váš zákazník dohodne termín obhliadky
+  na pár klikov kedykoľvek a kdekoľvek sa nachádza. Zároveň má všetky obhliadkové
+  protokoly archivované v jeho e-mailovej schránke vždy poruke.
+
+- Menej administratívy, viac objednávok
+  Vďaka elektronickým dokumentom a ich automatickému odosielaniu zákazníkovi
+  na e-mailovú adresu ušetríte denne až dve hodiny času.
+
+- 100% súlad s legislatívou
+  Všetky dokumenty sú pravidelne aktualizované tak, aby vyhovovali aktuálnej
+  legislatíve.
+
+- Vaša firma pôsobí profesionálne
+  Prispôsobením dizajnu e-mailov pôsobíte na zákazníka profesionálne.
+  Pri nastavení účtu sa postaráme o všetko od A po Z na mieru. Od nahratia vášho firemného
+  loga, názvu firmy, pečiatky a podpisu až po osvedčenia o spôsobilosti.
+
+====================================================
+PRE KOHO JE SYSTÉM POSTAVENÝ
+====================================================
+Postavené pre ľudí, ktorí radšej robia ako vypisujú
+Samostatní technici aj celé servisné firmy s viacerými pracovníkmi v jednom systéme.
+
+- Kurenári
+- Klimatizéri
+- Revízni technici
+- Celé servisné firmy
+
+====================================================
+AKÝ JE POSTUP? (3 kroky)
+====================================================
+Krok č.1 — Jednoducho si vyberiete želaný balíček služieb a zaregistrujete sa.
+Krok č.2 — My pripravíme účet na mieru podľa vašich požiadaviek
+Krok č.3 — Hotovo, všetko je pripravené pre pohodlné používanie.
+CTA: Vybrať balíček
+
+====================================================
+CENNÍK
+====================================================
+
+--- TECHNIK — 39 EUR/mes ---
+Pre samostatného servisného alebo revízneho technika.
+- Servisné alebo revízne protokoly do 1 minúty
+- Kompletný prehľad zákazníkov a zariadení
+- Automatické SMS a e-mail pripomienky pred ďalšou prehliadkou
+- Jednoduchá online objednávka zákazníka
+- Prispôsobenie systému vášmu názvu, logu, podpisu a pečiatky
+CTA: Objednať
+
+--- KOMPLEXNÝ TECHNIK — 49 EUR/mes (OBĽÚBENÉ) ---
+Pre všestranného technika, ktorý robí servis aj revízie.
+- Všetko z balíka "Technik"
+- Sledovanie rozdielnych lehôt pre servis a revíziu (napr. 12 a 6 mesiacov)
+- Rozdielne znenie a štruktúra protokolov pre každý typ služby
+- Prispôsobené pripomienkovanie pre každý typ prehliadky samostatne
+CTA: Objednať
+
+--- SERVISNÁ FIRMA — 59 EUR/mes ---
+Pre menšiu firmu s viacerými technikmi a administratívou.
+- Všetko z balíka "Komplexný technik"
+- Každý technik má svoj prístup, podpis, záznamy a iné
+- Spoločná firemná databáza zákazníkov a zariadení
+- Dizajn a znenie SMS a e-mailov na mieru
+- Prémiová podpora vašich požiadaviek
+CTA: Objednať
+
+Poznámka: Uvedené ceny sú bez DPH.
+Poznámka: Ceny balíčkov nezahŕňajú jednorázový implementačný poplatok.
+
+--- IMPLEMENTÁCIA SYSTÉMU (popup) ---
+Cena: 499 EUR bez DPH / jednorázovo
+Trvanie: max. 5 pracovných dní
+Implementácia zahŕňa:
+- Tvorba prístupov a používateľských profilov
+- Prispôsobenie digitálnych dokumentov podľa klientských informácií
+- Prispôsobenie e-mailov podľa dizajnu
+- Úprava znenia pripomínacích SMS
+- Import existujúcich kontaktov
+- Nastavenie servisovaných značiek a modelov
+- Predstavenie a zaučenie do nástroja
+- Prístup k textovým a video návodom
+- 90 dňová podpora
+
+====================================================
+RECENZIE ZÁKAZNÍKOV
+====================================================
+Servisní technici, ktorí prestali vypisovať papiere
+
+★★★★★
+„Riešenie mi vyhovuje, efektívnejšie plánujem a teda aj servisujem svojich klientov"
+Matúš Luščan - Plynotechna
+
+★★★★★
+„Najviac oceňujem digitálne dokumenty. Záznam už nevypisujem. Zákazník ho má skôr, než si zbalím veci."
+Vavrotherm
+
+★★★★★
+„Máme históriu každého kotla — konečne vieme, čo sa robilo a čo treba pri najbližšom servise spraviť."
+Revitherm
+
+====================================================
+RIEŠENIE NA MIERU
+====================================================
+Potrebujete individuálne riešenie na mieru? Kontaktujte nás a radi s vám pomôžeme
+s vašimi potrebami.
+
+====================================================
+KONTAKTNÝ FORMULÁR "NAPÍŠTE NÁM"
+====================================================
+Polia: Meno, Priezvisko, E-mail, Tel. číslo, Názov spoločnosti, Poznámka
+Checkbox: Súhlasím so spracovaním osobných údajov.
+Tlačidlo: Odoslať
+
+====================================================
+PÄTIČKA
+====================================================
+Sociálne siete: Facebook, Youtube, Instagram
+Telefón: +421 919 208 569
+E-mail: servisny@zaznam.sk
+Copyright: © Servisnyzaznam.sk by Kanos
+Tagline: Servisný záznam je vytvorený pre servisných technikov, ktorí sa chcú
+zbaviť zbytočnej administratívy a mať poriadok vo svojich zákazníkoch aj
+vykonaných servisoch.
+
+Odkaz na GDPR stránku: /spracovanie-osobnych-udajov

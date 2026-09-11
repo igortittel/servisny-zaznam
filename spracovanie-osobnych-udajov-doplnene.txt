@@ -1,0 +1,141 @@
+Súhlas so spracovaním osobných údajov
+
+Vaše súkromie je pre nás dôležité. Preto venujeme maximálnu pozornosť ochrane
+osobných údajov v súlade s platnou legislatívou – najmä s Nariadením
+Európskeho parlamentu a Rady (EÚ) 2016/679 (GDPR) a zákonom č. 18/2018 Z.z.
+o ochrane osobných údajov.
+
+----------------------------------------------------
+Kto je prevádzkovateľ?
+----------------------------------------------------
+Kanos.sk s.r.o.
+Sídlo: Pribinova 3, 920 01 Hlohovec
+IČO: 55356257
+DIČ: 2121971731
+IČ DPH: SK2121971731
+Zapísaná:  Okresný súd Trnava, oddiel: Sro, vložka č. X/T
+E-mail: kanos@kanos.sk
+(ďalej len „prevádzkovateľ")
+
+----------------------------------------------------
+Aké údaje spracúvame?
+----------------------------------------------------
+V prípade, že využívate naše webové formuláre (napr. kontaktný alebo
+rezervačný formulár), môžeme spracúvať tieto osobné údaje:
+
+- Meno a priezvisko
+- E-mailová adresa
+- Telefónne číslo
+- Názov spoločnosti (ak je uvedený)
+- Ďalšie údaje dobrovoľne uvedené vo formulári
+
+----------------------------------------------------
+Na aký účel údaje používame?
+----------------------------------------------------
+Údaje spracúvame výlučne za účelom:
+
+- odpovedania na vaše otázky alebo požiadavky,
+- vybavenia rezervácie alebo objednávky služieb,
+- komunikácie v súvislosti s poskytovaním našich služieb,
+- evidencie a vybavovania dopytov na účely vlastnej administratívy
+  a ochrany našich oprávnených záujmov (napr. preukázanie priebehu
+  komunikácie v prípade sporu).
+
+----------------------------------------------------
+Právny základ spracúvania
+----------------------------------------------------
+Právnym základom spracúvania je:
+
+- Váš súhlas so spracovaním osobných údajov (čl. 6 ods. 1 písm. a GDPR)
+  – pri vyplnení formulára,
+- plnenie zmluvy alebo úkony pred jej uzatvorením (čl. 6 ods. 1 písm. b
+  GDPR) – ak ide o objednávku služby,
+- oprávnený záujem prevádzkovateľa (čl. 6 ods. 1 písm. f GDPR)
+  – evidencia dopytov, ochrana práv a preukázateľnosť komunikácie.
+
+----------------------------------------------------
+Komu môžu byť údaje sprístupnené?
+----------------------------------------------------
+Vaše údaje neposkytujeme tretím stranám, okrem prípadov, keď je to
+nevyhnutné pre plnenie našich zákonných alebo zmluvných povinností,
+napr.:
+
+- poskytovatelia IT služieb / hostingu, ktorí sa podieľajú na prevádzke
+  stránky,
+- poskytovatelia nástrojov na e-mailovú a SMS komunikáciu,
+- účtovné/daňové poradenstvo, ak si to vyžaduje zákon.
+
+So všetkými spracúvateľmi máme uzatvorenú zmluvu o spracúvaní osobných
+údajov podľa čl. 28 GDPR.
+
+----------------------------------------------------
+Prenos údajov mimo EÚ/EHP
+----------------------------------------------------
+Niektoré nástroje, ktoré používame (napr. Google – Google Tag Manager,
+Google Analytics, prípadne ďalšie nástroje tretích strán uvedené nižšie
+v časti Cookies), môžu spracúvať údaje aj mimo Európskej únie/EHP
+(najmä v USA). V takom prípade zabezpečujeme primeranú ochranu údajov
+v súlade s GDPR (napr. štandardné zmluvné doložky alebo certifikácia
+EU-US Data Privacy Framework u príslušného poskytovateľa).
+
+----------------------------------------------------
+Ako dlho údaje uchovávame?
+----------------------------------------------------
+Vaše osobné údaje uchovávame len po dobu nevyhnutnú na splnenie účelu,
+na ktorý boli získané:
+
+- údaje z kontaktného/rezervačného formulára: 12 mesiacov
+  od posledného kontaktu, ak nedôjde k uzatvoreniu zmluvy,
+- údaje spracúvané na základe zmluvy: po dobu trvania zmluvného vzťahu
+  a následne po dobu vyžadovanú osobitnými predpismi (napr. účtovnými
+  a daňovými zákonmi, spravidla 10 rokov),
+- v prípade odvolania súhlasu údaje vymažeme bez zbytočného odkladu,
+  pokiaľ ich ďalej nie sme povinní uchovávať zo zákona.
+
+----------------------------------------------------
+Cookies a podobné technológie
+----------------------------------------------------
+Naša stránka používa súbory cookies a podobné technológie na zabezpečenie
+jej fungovania, meranie návštevnosti a zlepšovanie používateľského
+zážitku.
+
+Používame najmä:
+
+- nevyhnutné cookies – potrebné pre základné fungovanie stránky,
+- analytické cookies (napr. Google Analytics prostredníctvom Google Tag
+  Manageru) – na vyhodnocovanie návštevnosti a správania sa
+  návštevníkov,
+- marketingové/remarketingové cookies, ak sa používajú
+  (napr. Meta Pixel, Google Ads).
+
+Cookies, ktoré nie sú nevyhnutné pre chod stránky, používame len na
+základe vášho súhlasu, ktorý môžete kedykoľvek zmeniť alebo odvolať
+prostredníctvom nastavení cookies na stránke.
+Používanie cookies môžete tiež kedykoľvek obmedziť alebo zakázať
+v nastaveniach vášho internetového prehliadača.
+
+----------------------------------------------------
+Aké máte práva?
+----------------------------------------------------
+V súvislosti so spracovaním osobných údajov máte právo na:
+
+- prístup k svojim údajom,
+- opravu nepresných údajov,
+- vymazanie (tzv. právo „na zabudnutie"),
+- obmedzenie spracúvania,
+- prenos údajov,
+- namietať proti spracúvaniu,
+- odvolať súhlas (kedykoľvek),
+- podať sťažnosť dozornému orgánu:
+
+  Úrad na ochranu osobných údajov Slovenskej republiky
+  Hraničná 12, 820 07 Bratislava 27
+  https://dataprotection.gov.sk
+
+----------------------------------------------------
+Ako odvolať súhlas?
+----------------------------------------------------
+Súhlas so spracovaním osobných údajov môžete kedykoľvek odvolať zaslaním
+e-mailu na adresu: kanos@kanos.sk, alebo písomne na sídlo spoločnosti.
+Odvolanie súhlasu nemá vplyv na zákonnosť spracúvania pred jeho
+odvolaním.
