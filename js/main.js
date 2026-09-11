@@ -247,22 +247,7 @@ if (equipGrid) {
   });
 }
 
-// =====================
-// AUDIENCE Cards — stagger fade-up
-// =====================
-const audGrid = document.querySelector('.audience-grid');
-if (audGrid) {
-  gsap.fromTo(audGrid.querySelectorAll('.audience-card'),
-    { opacity: 0, y: 28 },
-    {
-      opacity: 1, y: 0,
-      duration: 0.55,
-      stagger: 0.1,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: audGrid, start: 'top 85%', once: true },
-    }
-  );
-}
+// Audience cards animate via alternating slide (defined below in reveal section)
 
 // =====================
 // BENEFITS — Alternating slide in
@@ -298,68 +283,134 @@ document.querySelectorAll('.benefit-item').forEach((item, i) => {
 });
 
 // =====================
-// SECTION Scroll Fades (general)
+// SECTION Scroll Reveals (variants: fade-up | slide-left | slide-right | zoom | scale)
 // =====================
-function scrollFade(selector, options = {}) {
+function scrollReveal(selector, options = {}) {
+  const {
+    variant = 'fade-up',
+    y = 32, x = 40, scale = 0.94,
+    duration = 0.7, delay = 0, ease = 'power3.out',
+    start = 'top 86%',
+  } = options;
+
+  let fromVars = { opacity: 0 };
+  if (variant === 'fade-up')    fromVars.y = y;
+  if (variant === 'slide-left') fromVars.x = -x;
+  if (variant === 'slide-right') fromVars.x = x;
+  if (variant === 'zoom')       { fromVars.scale = scale; fromVars.y = 16; }
+  if (variant === 'scale')      fromVars.scale = scale;
+
   document.querySelectorAll(selector).forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, y: options.y ?? 28 },
+    gsap.fromTo(el, fromVars,
       {
-        opacity: 1, y: 0,
-        duration: options.duration ?? 0.65,
-        ease: 'power2.out',
-        delay: options.delay ?? 0,
-        scrollTrigger: { trigger: el, start: options.start ?? 'top 88%', once: true },
+        opacity: 1, y: 0, x: 0, scale: 1,
+        duration, ease, delay,
+        scrollTrigger: { trigger: el, start, once: true },
       }
     );
   });
 }
 
 function scrollStagger(containerSel, childSel, options = {}) {
+  const {
+    variant = 'fade-up',
+    y = 28, x = 40, scale = 0.94,
+    duration = 0.6, stagger = 0.1, ease = 'power2.out',
+    start = 'top 85%',
+  } = options;
+
+  let fromVars = { opacity: 0 };
+  if (variant === 'fade-up') fromVars.y = y;
+  if (variant === 'slide-left') fromVars.x = -x;
+  if (variant === 'slide-right') fromVars.x = x;
+  if (variant === 'zoom') { fromVars.scale = scale; fromVars.y = 16; }
+  if (variant === 'scale') fromVars.scale = scale;
+
   document.querySelectorAll(containerSel).forEach(container => {
     const children = container.querySelectorAll(childSel);
     if (!children.length) return;
-    gsap.fromTo(children,
-      { opacity: 0, y: options.y ?? 28 },
+    gsap.fromTo(children, fromVars,
       {
-        opacity: 1, y: 0,
-        duration: options.duration ?? 0.55,
-        stagger: options.stagger ?? 0.1,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: container, start: options.start ?? 'top 85%', once: true },
+        opacity: 1, y: 0, x: 0, scale: 1,
+        duration, stagger, ease,
+        scrollTrigger: { trigger: container, start, once: true },
       }
     );
   });
 }
 
-// Equipment intro
-scrollFade('.equipment-intro h2');
+// Backward-compat shim
+function scrollFade(sel, opts = {}) { scrollReveal(sel, opts); }
 
-// Audience intro
-scrollFade('.audience-intro');
+// Reveal each section's heading pieces with directional variety:
+// eyebrow slides from left, h2 zooms in, lead/paragraph fades up.
+
+// Equipment section
+scrollReveal('.equipment-intro .eyebrow', { variant: 'slide-left', duration: 0.6 });
+scrollReveal('.equipment-intro h2', { variant: 'zoom', duration: 0.75 });
+scrollReveal('.equipment-hint', { variant: 'fade-up', delay: 0.15, duration: 0.55 });
+
+// Audience section — heading pieces
+scrollReveal('.audience-intro .eyebrow', { variant: 'slide-left' });
+scrollReveal('.audience-intro h2', { variant: 'zoom' });
+scrollReveal('.audience-intro .section-lead', { variant: 'fade-up', delay: 0.1 });
 
 // Extra benefits heading
-scrollFade('.extra-benefits-intro');
+scrollReveal('.extra-benefits-intro h2', { variant: 'zoom' });
+
+// Feature stack intro
+scrollReveal('.feat-stack-intro .eyebrow', { variant: 'slide-left' });
+scrollReveal('.feat-stack-intro h2', { variant: 'zoom' });
 
 // Process
-scrollFade('.process-intro');
-scrollStagger('.process-steps', '.process-step', { stagger: 0.12, y: 24 });
+scrollReveal('.process-intro .eyebrow', { variant: 'slide-left' });
+scrollReveal('.process-intro h2', { variant: 'zoom' });
+scrollStagger('.process-steps', '.process-step', { stagger: 0.12, y: 28 });
 
-// Pricing
-scrollFade('.pricing-intro');
-scrollStagger('.pricing-grid', '.pricing-card', { stagger: 0.1, y: 28 });
+// Pricing — prominent scale + stagger
+scrollReveal('.pricing-intro .eyebrow', { variant: 'slide-left' });
+scrollReveal('.pricing-intro h2', { variant: 'zoom' });
+scrollReveal('.pricing-intro .section-lead', { variant: 'fade-up', delay: 0.1 });
+scrollStagger('.pricing-grid', '.pricing-card', { variant: 'zoom', stagger: 0.12, scale: 0.92, duration: 0.7 });
 
-// Testimonials
-scrollFade('.testimonials-intro');
-scrollStagger('.testimonials-grid', '.testimonial-card', { stagger: 0.12, y: 24 });
+// Testimonials — slide from bottom w/ slight scale
+scrollReveal('.testimonials-intro .eyebrow', { variant: 'slide-left' });
+scrollReveal('.testimonials-intro h2', { variant: 'zoom' });
+scrollStagger('.testimonials-grid', '.testimonial-card', { variant: 'zoom', stagger: 0.14, scale: 0.94, duration: 0.65 });
 
-// Custom solution
-scrollFade('.custom-solution h2');
-scrollFade('.custom-solution .section-lead', { delay: 0.1 });
-scrollFade('.custom-solution .btn', { delay: 0.2 });
+// Custom solution — dramatic entrance
+scrollReveal('.custom-solution h2', { variant: 'zoom', duration: 0.8 });
+scrollReveal('.custom-solution .section-lead', { variant: 'fade-up', delay: 0.15 });
+scrollReveal('.custom-solution .btn', { variant: 'scale', delay: 0.3, duration: 0.55, ease: 'back.out(1.6)' });
 
 // Contact
-scrollFade('.contact-info');
+scrollReveal('.contact-info .eyebrow', { variant: 'slide-left' });
+scrollReveal('.contact-info h2', { variant: 'zoom' });
+scrollReveal('.contact-info p', { variant: 'fade-up', delay: 0.1 });
+scrollReveal('.contact-info .contact-detail', { variant: 'fade-up', delay: 0.2 });
+
+// Contact form fields — stagger from right
+scrollStagger('.contact-inner', '.form-group, .form-gdpr, .form-submit', {
+  variant: 'slide-right', x: 30, stagger: 0.08, duration: 0.55, start: 'top 80%',
+});
+
+// Equipment cards intro-into-view — extend existing (already in main flow but add rotation feel)
+// (Existing equipment-item stagger stays — see EQUIPMENT block above.)
+
+// Alternating audience card directions
+document.querySelectorAll('.audience-grid .audience-card').forEach((card, i) => {
+  const dir = (i % 2 === 0) ? -1 : 1;
+  gsap.fromTo(card,
+    { opacity: 0, x: 40 * dir, scale: 0.96 },
+    {
+      opacity: 1, x: 0, scale: 1,
+      duration: 0.65,
+      delay: i * 0.08,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+    }
+  );
+});
 
 // =====================
 // Contact Form — Resend
