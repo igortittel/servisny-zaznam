@@ -178,10 +178,11 @@ if (heroItems.length) {
   );
 }
 
-// Lottie hero animation
+// Lottie hero animation (keep ref for DOMLoaded → schedule scroll init)
+let heroLottieAnim = null;
 const heroLottieEl = document.getElementById('heroLottie');
 if (heroLottieEl && window.lottie) {
-  lottie.loadAnimation({
+  heroLottieAnim = lottie.loadAnimation({
     container: heroLottieEl,
     renderer: 'svg',
     loop: true,
@@ -191,49 +192,14 @@ if (heroLottieEl && window.lottie) {
 }
 
 // =====================
-// FEATURES — Stacked Cards (Sketchzlab-style, sticky handled by CSS)
-// =====================
-const stackCards = document.querySelectorAll('.feat-stack-card');
-if (stackCards.length) {
-  // Unified fade-up entrance on all viewports; CSS position:sticky handles stacking
-  stackCards.forEach(card => {
-    gsap.fromTo(card,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: card, start: 'top 85%', once: true },
-      }
-    );
-  });
-}
-
-// =====================
-// EQUIPMENT — Fade-up stagger + brand toggle (mobile click)
+// EQUIPMENT — Click toggle (non-ScrollTrigger, always active)
 // =====================
 const equipGrid = document.querySelector('.equipment-grid');
 if (equipGrid) {
-  gsap.fromTo(equipGrid.querySelectorAll('.equipment-item'),
-    { opacity: 0, scale: 0.9, y: 20 },
-    {
-      opacity: 1, scale: 1, y: 0,
-      duration: 0.5,
-      stagger: 0.07,
-      ease: 'back.out(1.4)',
-      scrollTrigger: {
-        trigger: equipGrid,
-        start: 'top 82%',
-        once: true,
-      },
-    }
-  );
-
-  // Click toggle (mobile-friendly); on desktop CSS hover handles it
   const isTouch = window.matchMedia('(hover: none)').matches;
   equipGrid.querySelectorAll('.equipment-item').forEach(item => {
     item.addEventListener('click', () => {
-      if (!isTouch) return; // desktop uses hover
+      if (!isTouch) return;
       const wasActive = item.classList.contains('active');
       equipGrid.querySelectorAll('.equipment-item.active').forEach(el => {
         el.classList.remove('active');
@@ -247,43 +213,8 @@ if (equipGrid) {
   });
 }
 
-// Audience cards animate via alternating slide (defined below in reveal section)
-
 // =====================
-// BENEFITS — Alternating slide in
-// =====================
-document.querySelectorAll('.benefit-item').forEach((item, i) => {
-  const num = item.querySelector('.benefit-num');
-  const body = item.querySelector('.benefit-body');
-
-  if (num) {
-    gsap.fromTo(num,
-      { opacity: 0, x: -40 },
-      {
-        opacity: 1, x: 0,
-        duration: 0.6,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: item, start: 'top 88%', once: true },
-      }
-    );
-  }
-
-  if (body) {
-    gsap.fromTo(body,
-      { opacity: 0, x: 30 },
-      {
-        opacity: 1, x: 0,
-        duration: 0.6,
-        delay: 0.08,
-        ease: 'power2.out',
-        scrollTrigger: { trigger: item, start: 'top 88%', once: true },
-      }
-    );
-  }
-});
-
-// =====================
-// SECTION Scroll Reveals (variants: fade-up | slide-left | slide-right | zoom | scale)
+// Scroll-reveal helpers (variants: fade-up | slide-left | slide-right | zoom | scale)
 // =====================
 function scrollReveal(selector, options = {}) {
   const {
@@ -294,11 +225,11 @@ function scrollReveal(selector, options = {}) {
   } = options;
 
   let fromVars = { opacity: 0 };
-  if (variant === 'fade-up')    fromVars.y = y;
-  if (variant === 'slide-left') fromVars.x = -x;
+  if (variant === 'fade-up')     fromVars.y = y;
+  if (variant === 'slide-left')  fromVars.x = -x;
   if (variant === 'slide-right') fromVars.x = x;
-  if (variant === 'zoom')       { fromVars.scale = scale; fromVars.y = 16; }
-  if (variant === 'scale')      fromVars.scale = scale;
+  if (variant === 'zoom')        { fromVars.scale = scale; fromVars.y = 16; }
+  if (variant === 'scale')       fromVars.scale = scale;
 
   document.querySelectorAll(selector).forEach(el => {
     gsap.fromTo(el, fromVars,
@@ -320,11 +251,11 @@ function scrollStagger(containerSel, childSel, options = {}) {
   } = options;
 
   let fromVars = { opacity: 0 };
-  if (variant === 'fade-up') fromVars.y = y;
-  if (variant === 'slide-left') fromVars.x = -x;
+  if (variant === 'fade-up')     fromVars.y = y;
+  if (variant === 'slide-left')  fromVars.x = -x;
   if (variant === 'slide-right') fromVars.x = x;
-  if (variant === 'zoom') { fromVars.scale = scale; fromVars.y = 16; }
-  if (variant === 'scale') fromVars.scale = scale;
+  if (variant === 'zoom')        { fromVars.scale = scale; fromVars.y = 16; }
+  if (variant === 'scale')       fromVars.scale = scale;
 
   document.querySelectorAll(containerSel).forEach(container => {
     const children = container.querySelectorAll(childSel);
@@ -339,77 +270,161 @@ function scrollStagger(containerSel, childSel, options = {}) {
   });
 }
 
-// Backward-compat shim
 function scrollFade(sel, opts = {}) { scrollReveal(sel, opts); }
 
-// Reveal each section's heading pieces with directional variety:
-// eyebrow slides from left, h2 zooms in, lead/paragraph fades up.
+// Pre-hide the reveal-targets so the "flash of visible content" doesn't happen
+// while we wait for Lottie/window.load. GSAP fromTo would set opacity later, but
+// setting instantly here prevents any FOUC.
+const revealTargets = [
+  '.feat-stack-card',
+  '.equipment-grid .equipment-item',
+  '.benefit-item .benefit-num, .benefit-item .benefit-body',
+  '.equipment-intro .eyebrow, .equipment-intro h2, .equipment-hint',
+  '.audience-intro .eyebrow, .audience-intro h2, .audience-intro .section-lead',
+  '.extra-benefits-intro h2',
+  '.feat-stack-intro .eyebrow, .feat-stack-intro h2',
+  '.process-intro .eyebrow, .process-intro h2, .process-steps .process-step',
+  '.pricing-intro .eyebrow, .pricing-intro h2, .pricing-intro .section-lead, .pricing-grid .pricing-card',
+  '.testimonials-intro .eyebrow, .testimonials-intro h2, .testimonials-grid .testimonial-card',
+  '.custom-solution h2, .custom-solution .section-lead, .custom-solution .btn',
+  '.contact-info .eyebrow, .contact-info h2, .contact-info p, .contact-info .contact-detail',
+  '.contact-inner .form-group, .contact-inner .form-gdpr, .contact-inner .form-submit',
+  '.audience-grid .audience-card',
+];
+gsap.set(revealTargets.join(', '), { opacity: 0 });
 
-// Equipment section
-scrollReveal('.equipment-intro .eyebrow', { variant: 'slide-left', duration: 0.6 });
-scrollReveal('.equipment-intro h2', { variant: 'zoom', duration: 0.75 });
-scrollReveal('.equipment-hint', { variant: 'fade-up', delay: 0.15, duration: 0.55 });
+// =====================
+// Deferred scroll-animation init — waits for Lottie/window.load
+// so ScrollTrigger positions are calculated on final layout.
+// =====================
+let scrollInitDone = false;
+function initScrollAnimations() {
+  if (scrollInitDone) return;
+  scrollInitDone = true;
 
-// Audience section — heading pieces
-scrollReveal('.audience-intro .eyebrow', { variant: 'slide-left' });
-scrollReveal('.audience-intro h2', { variant: 'zoom' });
-scrollReveal('.audience-intro .section-lead', { variant: 'fade-up', delay: 0.1 });
+  // FEATURES — stacked cards entrance (CSS position:sticky does the stacking)
+  document.querySelectorAll('.feat-stack-card').forEach(card => {
+    gsap.fromTo(card,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.6, ease: 'power2.out',
+        scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+      }
+    );
+  });
 
-// Extra benefits heading
-scrollReveal('.extra-benefits-intro h2', { variant: 'zoom' });
+  // EQUIPMENT — pop-in stagger
+  if (equipGrid) {
+    gsap.fromTo(equipGrid.querySelectorAll('.equipment-item'),
+      { opacity: 0, scale: 0.9, y: 20 },
+      {
+        opacity: 1, scale: 1, y: 0,
+        duration: 0.5, stagger: 0.07, ease: 'back.out(1.4)',
+        scrollTrigger: { trigger: equipGrid, start: 'top 82%', once: true },
+      }
+    );
+  }
 
-// Feature stack intro
-scrollReveal('.feat-stack-intro .eyebrow', { variant: 'slide-left' });
-scrollReveal('.feat-stack-intro h2', { variant: 'zoom' });
-
-// Process
-scrollReveal('.process-intro .eyebrow', { variant: 'slide-left' });
-scrollReveal('.process-intro h2', { variant: 'zoom' });
-scrollStagger('.process-steps', '.process-step', { stagger: 0.12, y: 28 });
-
-// Pricing — prominent scale + stagger
-scrollReveal('.pricing-intro .eyebrow', { variant: 'slide-left' });
-scrollReveal('.pricing-intro h2', { variant: 'zoom' });
-scrollReveal('.pricing-intro .section-lead', { variant: 'fade-up', delay: 0.1 });
-scrollStagger('.pricing-grid', '.pricing-card', { variant: 'zoom', stagger: 0.12, scale: 0.92, duration: 0.7 });
-
-// Testimonials — slide from bottom w/ slight scale
-scrollReveal('.testimonials-intro .eyebrow', { variant: 'slide-left' });
-scrollReveal('.testimonials-intro h2', { variant: 'zoom' });
-scrollStagger('.testimonials-grid', '.testimonial-card', { variant: 'zoom', stagger: 0.14, scale: 0.94, duration: 0.65 });
-
-// Custom solution — dramatic entrance
-scrollReveal('.custom-solution h2', { variant: 'zoom', duration: 0.8 });
-scrollReveal('.custom-solution .section-lead', { variant: 'fade-up', delay: 0.15 });
-scrollReveal('.custom-solution .btn', { variant: 'scale', delay: 0.3, duration: 0.55, ease: 'back.out(1.6)' });
-
-// Contact
-scrollReveal('.contact-info .eyebrow', { variant: 'slide-left' });
-scrollReveal('.contact-info h2', { variant: 'zoom' });
-scrollReveal('.contact-info p', { variant: 'fade-up', delay: 0.1 });
-scrollReveal('.contact-info .contact-detail', { variant: 'fade-up', delay: 0.2 });
-
-// Contact form fields — stagger from right
-scrollStagger('.contact-inner', '.form-group, .form-gdpr, .form-submit', {
-  variant: 'slide-right', x: 30, stagger: 0.08, duration: 0.55, start: 'top 80%',
-});
-
-// Equipment cards intro-into-view — extend existing (already in main flow but add rotation feel)
-// (Existing equipment-item stagger stays — see EQUIPMENT block above.)
-
-// Alternating audience card directions
-document.querySelectorAll('.audience-grid .audience-card').forEach((card, i) => {
-  const dir = (i % 2 === 0) ? -1 : 1;
-  gsap.fromTo(card,
-    { opacity: 0, x: 40 * dir, scale: 0.96 },
-    {
-      opacity: 1, x: 0, scale: 1,
-      duration: 0.65,
-      delay: i * 0.08,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+  // BENEFITS — alternating slide
+  document.querySelectorAll('.benefit-item').forEach(item => {
+    const num = item.querySelector('.benefit-num');
+    const body = item.querySelector('.benefit-body');
+    if (num) {
+      gsap.fromTo(num, { opacity: 0, x: -40 },
+        { opacity: 1, x: 0, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: item, start: 'top 88%', once: true } });
     }
-  );
+    if (body) {
+      gsap.fromTo(body, { opacity: 0, x: 30 },
+        { opacity: 1, x: 0, duration: 0.6, delay: 0.08, ease: 'power2.out',
+          scrollTrigger: { trigger: item, start: 'top 88%', once: true } });
+    }
+  });
+
+  // Section heading reveals with directional variety
+  scrollReveal('.equipment-intro .eyebrow', { variant: 'slide-left', duration: 0.6 });
+  scrollReveal('.equipment-intro h2', { variant: 'zoom', duration: 0.75 });
+  scrollReveal('.equipment-hint', { variant: 'fade-up', delay: 0.15, duration: 0.55 });
+
+  scrollReveal('.audience-intro .eyebrow', { variant: 'slide-left' });
+  scrollReveal('.audience-intro h2', { variant: 'zoom' });
+  scrollReveal('.audience-intro .section-lead', { variant: 'fade-up', delay: 0.1 });
+
+  scrollReveal('.extra-benefits-intro h2', { variant: 'zoom' });
+
+  scrollReveal('.feat-stack-intro .eyebrow', { variant: 'slide-left' });
+  scrollReveal('.feat-stack-intro h2', { variant: 'zoom' });
+
+  scrollReveal('.process-intro .eyebrow', { variant: 'slide-left' });
+  scrollReveal('.process-intro h2', { variant: 'zoom' });
+  scrollStagger('.process-steps', '.process-step', { stagger: 0.12, y: 28 });
+
+  scrollReveal('.pricing-intro .eyebrow', { variant: 'slide-left' });
+  scrollReveal('.pricing-intro h2', { variant: 'zoom' });
+  scrollReveal('.pricing-intro .section-lead', { variant: 'fade-up', delay: 0.1 });
+  scrollStagger('.pricing-grid', '.pricing-card', { variant: 'zoom', stagger: 0.12, scale: 0.92, duration: 0.7 });
+
+  scrollReveal('.testimonials-intro .eyebrow', { variant: 'slide-left' });
+  scrollReveal('.testimonials-intro h2', { variant: 'zoom' });
+  scrollStagger('.testimonials-grid', '.testimonial-card', { variant: 'zoom', stagger: 0.14, scale: 0.94, duration: 0.65 });
+
+  scrollReveal('.custom-solution h2', { variant: 'zoom', duration: 0.8 });
+  scrollReveal('.custom-solution .section-lead', { variant: 'fade-up', delay: 0.15 });
+  scrollReveal('.custom-solution .btn', { variant: 'scale', delay: 0.3, duration: 0.55, ease: 'back.out(1.6)' });
+
+  scrollReveal('.contact-info .eyebrow', { variant: 'slide-left' });
+  scrollReveal('.contact-info h2', { variant: 'zoom' });
+  scrollReveal('.contact-info p', { variant: 'fade-up', delay: 0.1 });
+  scrollReveal('.contact-info .contact-detail', { variant: 'fade-up', delay: 0.2 });
+
+  scrollStagger('.contact-inner', '.form-group, .form-gdpr, .form-submit', {
+    variant: 'slide-right', x: 30, stagger: 0.08, duration: 0.55, start: 'top 80%',
+  });
+
+  // Alternating audience card directions
+  document.querySelectorAll('.audience-grid .audience-card').forEach((card, i) => {
+    const dir = (i % 2 === 0) ? -1 : 1;
+    gsap.fromTo(card,
+      { opacity: 0, x: 40 * dir, scale: 0.96 },
+      {
+        opacity: 1, x: 0, scale: 1,
+        duration: 0.65, delay: i * 0.08, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 88%', once: true },
+      }
+    );
+  });
+
+  // Ensure ScrollTrigger positions are calibrated to the current layout
+  ScrollTrigger.refresh();
+}
+
+function scheduleScrollInit() {
+  if (scrollInitDone) return;
+  requestAnimationFrame(() => setTimeout(initScrollAnimations, 50));
+}
+
+// Fire the scroll-animation setup when Lottie finished mounting AND
+// window fully loaded, whichever comes last — this guarantees final layout.
+if (heroLottieAnim) {
+  heroLottieAnim.addEventListener('DOMLoaded', scheduleScrollInit);
+  // Safety net: if Lottie fails or DOMLoaded never fires, unblock after 1.2s
+  setTimeout(scheduleScrollInit, 1200);
+}
+if (document.readyState === 'complete') {
+  scheduleScrollInit();
+} else {
+  window.addEventListener('load', scheduleScrollInit);
+}
+
+// Refresh trigger positions on resize / orientation change (mobile URL bar toggle)
+let refreshRAF;
+window.addEventListener('resize', () => {
+  cancelAnimationFrame(refreshRAF);
+  refreshRAF = requestAnimationFrame(() => ScrollTrigger.refresh());
+});
+window.addEventListener('orientationchange', () => {
+  setTimeout(() => ScrollTrigger.refresh(), 200);
 });
 
 // =====================
