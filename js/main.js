@@ -178,17 +178,159 @@ if (heroItems.length) {
   );
 }
 
-// Lottie hero animation (keep ref for DOMLoaded → schedule scroll init)
-let heroLottieAnim = null;
-const heroLottieEl = document.getElementById('heroLottie');
-if (heroLottieEl && window.lottie) {
-  heroLottieAnim = lottie.loadAnimation({
-    container: heroLottieEl,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'design/Smartphones Applications.json',
-  });
+// Hero service-record animation — 10s rAF loop
+const hsrRoot = document.getElementById('hsrRoot');
+if (hsrRoot) {
+  const T = {
+    nameStart: 450, nameEnd: 950,
+    deviceStart: 1100, deviceEnd: 2200,
+    checksStart: 2500, checkStep: 450,
+    part: 5200, stamp: 5700, send: 6700,
+    email: 7150, sms: 7700,
+    fadeOut: 9500, total: 10000,
+  };
+  const STILL_AT = T.send - 1;
+  const COPY_NAME = 'Ján Novák';
+  const COPY_DEVICE = 'Buderus Logamax Plus GB112-29';
+
+  const el = {
+    stage:      hsrRoot.querySelector('[data-hsr-stage]'),
+    card:       hsrRoot.querySelector('[data-hsr-card]'),
+    name:       hsrRoot.querySelector('[data-hsr-name]'),
+    device:     hsrRoot.querySelector('[data-hsr-device]'),
+    caretName:  hsrRoot.querySelector('[data-hsr-caret-name]'),
+    caretDev:   hsrRoot.querySelector('[data-hsr-caret-device]'),
+    tasks:      Array.from(hsrRoot.querySelectorAll('[data-hsr-tasks] > li')),
+    part:       hsrRoot.querySelector('[data-hsr-part]'),
+    stamp:      hsrRoot.querySelector('[data-hsr-stamp]'),
+    email:      hsrRoot.querySelector('[data-hsr-email]'),
+    sms:        hsrRoot.querySelector('[data-hsr-sms]'),
+    days:       hsrRoot.querySelector('[data-hsr-days]'),
+  };
+
+  const clamp01 = v => Math.min(1, Math.max(0, v));
+  const progress = (t, a, b) => clamp01((t - a) / (b - a));
+  const typed = (str, t, a, b) => {
+    const chars = Array.from(str);
+    return chars.slice(0, Math.round(progress(t, a, b) * chars.length)).join('');
+  };
+
+  const prev = {
+    name: '__init__', device: '__init__',
+    typingName: null, typingDev: null,
+    checked: new Array(el.tasks.length).fill(null),
+    part: null, stamp: null, sent: null,
+    email: null, sms: null, fading: null, days: -1,
+  };
+
+  function applyFrame(t, still) {
+    const name   = typed(COPY_NAME,   t, T.nameStart,   T.nameEnd);
+    const device = typed(COPY_DEVICE, t, T.deviceStart, T.deviceEnd);
+    const typingName = !still && t >= T.nameStart   && t < T.nameEnd   + 150;
+    const typingDev  = !still && t >= T.deviceStart && t < T.deviceEnd + 250;
+
+    if (name   !== prev.name)   { el.name.textContent   = still ? COPY_NAME   : (name   || ' '); prev.name   = name; }
+    if (device !== prev.device) { el.device.textContent = still ? COPY_DEVICE : (device || ' '); prev.device = device; }
+    if (typingName !== prev.typingName) { el.caretName.hidden = !typingName; prev.typingName = typingName; }
+    if (typingDev  !== prev.typingDev)  { el.caretDev.hidden  = !typingDev;  prev.typingDev  = typingDev; }
+
+    for (let i = 0; i < el.tasks.length; i++) {
+      const checked = still ? true : (t >= T.checksStart + i * T.checkStep);
+      if (checked !== prev.checked[i]) {
+        el.tasks[i].classList.toggle('is-checked', checked);
+        prev.checked[i] = checked;
+      }
+    }
+
+    const part   = still ? true  : (t >= T.part);
+    const stamp  = still ? true  : (t >= T.stamp);
+    const sent   = still ? false : (t >= T.send);
+    const email  = still ? false : (t >= T.email);
+    const sms    = still ? false : (t >= T.sms);
+    const fading = still ? false : (t >= T.fadeOut);
+
+    if (part   !== prev.part)   { el.part .classList.toggle('is-shown', part);   prev.part   = part;   }
+    if (stamp  !== prev.stamp)  { el.stamp.classList.toggle('is-shown', stamp);  prev.stamp  = stamp;  }
+    if (sent   !== prev.sent)   { el.card .classList.toggle('is-sent',  sent);   prev.sent   = sent;   }
+    if (email  !== prev.email)  { el.email.classList.toggle('is-shown', email);  prev.email  = email;  }
+    if (sms    !== prev.sms)    { el.sms  .classList.toggle('is-shown', sms);    prev.sms    = sms;    }
+    if (fading !== prev.fading) { el.stage.classList.toggle('is-fading', fading); prev.fading = fading; }
+
+    const days = still ? 30 : Math.round(45 - 15 * progress(t, T.sms + 350, T.sms + 1250));
+    if (days !== prev.days) { el.days.textContent = days; prev.days = days; }
+  }
+
+  function resetToStart() {
+    // Force all prev values to opposite so applyFrame(0) writes empty state
+    prev.name = prev.device = '__force__';
+    prev.typingName = prev.typingDev = true;
+    prev.checked = prev.checked.map(() => true);
+    prev.part = prev.stamp = true;
+    prev.sent = prev.email = prev.sms = prev.fading = true;
+    prev.days = -1;
+    applyFrame(0, false);
+    // After writing empty state, sent/email/sms/fading will be false — correct.
+  }
+
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (mq.matches) {
+    applyFrame(STILL_AT, true);
+  } else {
+    resetToStart();
+
+    let active = false;
+    let timeRef = 0;
+    let last = 0;
+    let lastCommit = 0;
+    let raf = 0;
+
+    function loop(now) {
+      if (!active) { raf = 0; return; }
+      const delta = Math.min(now - last, 100);
+      last = now;
+      const next = timeRef + delta;
+      if (next >= T.total) {
+        timeRef = 0;
+        resetToStart();
+        lastCommit = now;
+      } else {
+        timeRef = next;
+        if (now - lastCommit > 33) {
+          applyFrame(timeRef, false);
+          lastCommit = now;
+        }
+      }
+      raf = requestAnimationFrame(loop);
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      const e = entries[0];
+      const vis = e.isIntersecting && e.intersectionRatio >= 0.3;
+      if (vis && !active) {
+        active = true;
+        last = performance.now();
+        raf = requestAnimationFrame(loop);
+      } else if (!vis && active) {
+        active = false;
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    }, { threshold: [0, 0.3, 1] });
+    io.observe(hsrRoot);
+
+    // Respect runtime toggle of reduced-motion preference
+    const mqHandler = (e) => {
+      if (e.matches) {
+        active = false;
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        applyFrame(STILL_AT, true);
+      }
+    };
+    if (mq.addEventListener) mq.addEventListener('change', mqHandler);
+    else mq.addListener(mqHandler);
+  }
 }
 
 // =====================
@@ -404,18 +546,16 @@ function scheduleScrollInit() {
   requestAnimationFrame(() => setTimeout(initScrollAnimations, 50));
 }
 
-// Fire the scroll-animation setup when Lottie finished mounting AND
-// window fully loaded, whichever comes last — this guarantees final layout.
-if (heroLottieAnim) {
-  heroLottieAnim.addEventListener('DOMLoaded', scheduleScrollInit);
-  // Safety net: if Lottie fails or DOMLoaded never fires, unblock after 1.2s
-  setTimeout(scheduleScrollInit, 1200);
-}
+// Fire the scroll-animation setup once the window has fully loaded so
+// ScrollTrigger positions are calculated on final layout. The service-record
+// hero mounts synchronously, so no extra gating is needed.
 if (document.readyState === 'complete') {
   scheduleScrollInit();
 } else {
   window.addEventListener('load', scheduleScrollInit);
 }
+// Safety net: unblock after 1.5s even if load never fires
+setTimeout(scheduleScrollInit, 1500);
 
 // Refresh trigger positions on resize / orientation change (mobile URL bar toggle)
 let refreshRAF;

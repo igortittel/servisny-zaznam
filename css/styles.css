@@ -1280,22 +1280,24 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 /* ---- Hero split layout ---- */
 .hero-layout {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 48px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
   align-items: center;
-  min-height: calc(100dvh - 64px);
-  padding: 64px 0;
+  padding: 24px 0 48px;
 }
 
 .hero-content, .hero-visual { min-width: 0; max-width: 100%; }
 .hero-content > * { max-width: 100%; }
 .hero-content h1, .hero-content .hero-subtitle { word-wrap: break-word; overflow-wrap: break-word; }
 
-/* ---- Hero visual — Lottie container ---- */
+/* ---- Hero visual container ---- */
 .hero-visual {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
+  min-width: 0;
 }
 
 .hv-card {
@@ -1698,10 +1700,11 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 /* ---- Tablet+ features layout ---- */
 @media (min-width: 768px) {
   .hero-layout {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 60px;
     padding: 0;
     min-height: calc(100dvh - 64px);
+    align-items: center;
   }
 
   .hero-visual { display: block; }
@@ -1776,18 +1779,8 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   .site-header.island .header-cta:hover { background-color: rgba(255, 255, 255, 0.9); opacity: 1; }
 }
 
-/* =====================================================
-   NEW: Hero Lottie
-   ===================================================== */
-.hero-lottie {
-  width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-  aspect-ratio: 1 / 1;
-}
 @media (min-width: 768px) {
   .hero-visual { height: auto; }
-  .hero-lottie { max-width: 100%; aspect-ratio: 1 / 1; }
 }
 
 /* =====================================================
@@ -2102,7 +2095,6 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
    ===================================================== */
 @media (prefers-reduced-motion: reduce) {
   .feat-stack-card { transform: none !important; }
-  .hero-lottie { display: none; }
 }
 
 /* GSAP handles pinning — remove CSS sticky to avoid conflict */
@@ -2194,5 +2186,468 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
     max-height: none;
     overflow: visible;
     padding: 0;
+  }
+}
+
+/* =====================================================
+   Hero service-record animation (replaces old Lottie)
+   All inner sizes in cqw via container-type: inline-size
+   ===================================================== */
+.hsr-root {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  margin-inline: auto;
+  aspect-ratio: 210 / 297;
+  container-type: inline-size;
+  user-select: none;
+  color: #111;
+  font-family: "Open Sans", -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+@media (min-width: 768px) {
+  .hsr-root { max-width: 294px; }
+}
+
+.hsr-stage {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.45s ease-in-out;
+}
+.hsr-stage.is-fading { opacity: 0; }
+
+/* ---- A4 card ---- */
+.hsr-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 6cqw;
+  border-radius: 2.4cqw;
+  background: #fff;
+  box-shadow: 0 12px 32px -10px rgba(17,17,17,0.28), inset 0 0 0 1px rgba(17,17,17,0.05);
+  overflow: hidden;
+  transform-origin: 50% 40%;
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  transition:
+    transform 0.65s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.4s ease-in-out;
+}
+.hsr-card.is-sent {
+  transform: translateY(-7%) scale(0.6);
+  opacity: 0;
+  transition:
+    transform 0.65s cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 0.4s ease-in-out 0.15s;
+}
+
+/* ---- Head ---- */
+.hsr-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2cqw;
+  padding-bottom: 3cqw;
+  border-bottom: 1px solid #D9D9D9;
+}
+.hsr-title {
+  font-size: 6.2cqw;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  margin: 0;
+  font-weight: 400;
+}
+.hsr-title-light { font-weight: 300; }
+.hsr-title-bold  { font-weight: 800; }
+.hsr-docno {
+  font-size: 2.6cqw;
+  color: rgba(17,17,17,0.5);
+  white-space: nowrap;
+}
+
+/* ---- Fields + caret ---- */
+.hsr-fields {
+  display: grid;
+  gap: 2.4cqw;
+  margin-top: 4cqw;
+}
+.hsr-field {
+  border-radius: 1.6cqw;
+  background: rgba(217,217,217,0.45);
+  padding: 2.2cqw 3cqw;
+}
+.hsr-field-label {
+  font-size: 2.5cqw;
+  font-weight: 600;
+  color: rgba(17,17,17,0.55);
+}
+.hsr-field-value {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 3.8cqw;
+  font-weight: 600;
+  line-height: 1.3;
+  min-height: 1.3em;
+}
+.hsr-caret {
+  display: inline-block;
+  width: 0.35cqw;
+  height: 1.05em;
+  margin-left: 0.3cqw;
+  background: #111;
+  animation: hsr-caret-blink 0.8s steps(1) infinite;
+}
+.hsr-caret[hidden] { display: none; }
+@keyframes hsr-caret-blink {
+  0%, 50%        { opacity: 1; }
+  50.01%, 100%   { opacity: 0; }
+}
+
+/* ---- Section labels ---- */
+.hsr-section-label {
+  display: flex;
+  align-items: center;
+  gap: 2.4cqw;
+  margin-top: 5cqw;
+}
+.hsr-section-label--parts { margin-top: 4cqw; }
+.hsr-section-label > span:first-child {
+  font-size: 2.9cqw;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.hsr-section-label .hsr-rule {
+  flex: 1;
+  height: 1px;
+  background: #D9D9D9;
+}
+
+/* ---- Tasks ---- */
+.hsr-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 1.2cqw 0 0;
+}
+.hsr-task {
+  display: flex;
+  align-items: center;
+  gap: 3cqw;
+  padding: 1.2cqw 0;
+  font-size: 3.5cqw;
+  border-bottom: 1px solid rgba(217,217,217,0.7);
+}
+.hsr-task:last-child { border-bottom: 0; }
+.hsr-task-text {
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+.hsr-task.is-checked .hsr-task-text { opacity: 1; }
+
+.hsr-check {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 4.2cqw;
+  height: 4.2cqw;
+  flex: 0 0 auto;
+  border: 0.35cqw solid rgba(17,17,17,0.8);
+  border-radius: 0.9cqw;
+}
+.hsr-check::before {
+  content: "";
+  position: absolute;
+  inset: -0.35cqw;
+  background: #2F7A58;
+  border-radius: 0.9cqw;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.hsr-task.is-checked .hsr-check::before { opacity: 1; }
+.hsr-task.is-checked .hsr-check {
+  animation: hsr-tick-pop 0.3s ease-out;
+}
+@keyframes hsr-tick-pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+
+.hsr-check svg {
+  position: relative;
+  width: 74%;
+  height: 74%;
+}
+.hsr-check svg path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* path length ≈ 19.9 → dasharray 24 safely covers it */
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.35s ease-out 0.08s,
+    opacity 0.05s linear 0.08s;
+}
+.hsr-task.is-checked .hsr-check svg path {
+  stroke-dashoffset: 0;
+  opacity: 1;
+}
+
+/* ---- Part row ---- */
+.hsr-part-wrap {
+  position: relative;
+  height: 7.4cqw;
+  margin-top: 1.2cqw;
+}
+.hsr-part {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  gap: 3cqw;
+  font-size: 3.5cqw;
+  opacity: 0;
+  transform: translateY(35%);
+  transition:
+    opacity 0.4s cubic-bezier(0.65, 0, 0.35, 1),
+    transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hsr-part.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hsr-plus {
+  display: grid;
+  place-items: center;
+  width: 4.2cqw;
+  height: 4.2cqw;
+  flex: 0 0 auto;
+  background: #111;
+  color: #fff;
+  border-radius: 50%;
+}
+.hsr-plus svg {
+  width: 64%;
+  height: 64%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.hsr-part-name { font-weight: 600; }
+.hsr-part-qty { margin-left: auto; color: rgba(17,17,17,0.5); }
+
+/* ---- Stamp (spring approximation via cubic-bezier overshoot) ---- */
+.hsr-stamp-wrap {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 3cqw;
+}
+.hsr-stamp {
+  max-width: 80%;
+  padding: 1.8cqw 3.5cqw;
+  text-align: center;
+  font-size: 2.9cqw;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  text-decoration: underline;
+  text-decoration-thickness: 0.25cqw;
+  text-underline-offset: 0.7cqw;
+  border: 0.5cqw solid #111;
+  border-radius: 1cqw;
+  opacity: 0;
+  transform: rotate(-4deg) scale(1.15);
+  transition:
+    transform 0.42s cubic-bezier(0.2, 1.6, 0.3, 1),
+    opacity 0.12s ease;
+}
+.hsr-stamp.is-shown {
+  opacity: 0.92;
+  transform: rotate(-4deg) scale(1);
+}
+
+/* ---- Notifications ---- */
+.hsr-notifs {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4cqw;
+  padding: 0 5cqw;
+  pointer-events: none;
+}
+.hsr-notif {
+  opacity: 0;
+  transform: translateY(22%) scale(0.95);
+  transform-origin: 50% 0%;
+  transition:
+    opacity 0.55s cubic-bezier(0.65, 0, 0.35, 1),
+    transform 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hsr-notif.is-shown {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.hsr-notif-email {
+  padding: 4cqw;
+  border-radius: 3.6cqw;
+  background: #fff;
+  box-shadow: 0 14px 34px -14px rgba(17,17,17,0.35), inset 0 0 0 1px rgba(17,17,17,0.07);
+}
+.hsr-notif-sms {
+  padding: 4cqw;
+  border-radius: 3.6cqw;
+  background: #111;
+  color: #fff;
+  box-shadow: 0 14px 34px -14px rgba(17,17,17,0.45);
+}
+
+.hsr-notif-row {
+  display: flex;
+  align-items: center;
+  gap: 2.2cqw;
+}
+.hsr-app-icon {
+  display: grid;
+  place-items: center;
+  width: 6cqw;
+  height: 6cqw;
+  flex: 0 0 auto;
+  background: #fff;
+  color: #111;
+  border-radius: 1.6cqw;
+}
+.hsr-app-icon--dark {
+  background: #111;
+  color: #fff;
+}
+.hsr-app-icon svg {
+  width: 62%;
+  height: 62%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hsr-app-name {
+  font-size: 2.9cqw;
+  font-weight: 600;
+}
+.hsr-notif-email .hsr-app-time {
+  margin-left: auto;
+  font-size: 2.7cqw;
+  color: rgba(17,17,17,0.5);
+}
+
+.hsr-notif-subject {
+  margin-top: 2.6cqw;
+  font-size: 3.7cqw;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.hsr-notif-preview {
+  margin-top: 1cqw;
+  font-size: 3.2cqw;
+  line-height: 1.45;
+  color: rgba(17,17,17,0.7);
+}
+
+.hsr-attachment {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.6cqw;
+  margin-top: 3cqw;
+  padding: 1.3cqw 2.4cqw;
+  border-radius: 1.6cqw;
+  background: rgba(217,217,217,0.5);
+  font-size: 2.8cqw;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity 0.35s cubic-bezier(0.65,0,0.35,1) 0.3s,
+    transform 0.35s cubic-bezier(0.65,0,0.35,1) 0.3s;
+}
+.hsr-notif-email.is-shown .hsr-attachment {
+  opacity: 1;
+  transform: translateX(0);
+}
+.hsr-attachment svg {
+  width: 3.2cqw;
+  height: 3.2cqw;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hsr-sms-text {
+  margin-top: 2.6cqw;
+  font-size: 3.7cqw;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.hsr-badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2cqw;
+  padding: 0.8cqw 2.2cqw;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-size: 2.7cqw;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transform: scale(0.9);
+  transition:
+    opacity 0.3s cubic-bezier(0.65,0,0.35,1) 0.25s,
+    transform 0.3s cubic-bezier(0.65,0,0.35,1) 0.25s;
+}
+.hsr-notif-sms.is-shown .hsr-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+.hsr-badge svg {
+  width: 3cqw;
+  height: 3cqw;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .hsr-caret { animation: none; }
+  .hsr-task.is-checked .hsr-check { animation: none; }
+  .hsr-stage,
+  .hsr-card,
+  .hsr-part,
+  .hsr-stamp,
+  .hsr-notif,
+  .hsr-attachment,
+  .hsr-badge,
+  .hsr-task-text,
+  .hsr-check::before,
+  .hsr-check svg path {
+    transition: none !important;
   }
 }
