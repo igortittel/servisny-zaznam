@@ -109,7 +109,11 @@ export default async function handler(req, res) {
   }
 
   const from = process.env.MAILGUN_FROM || `Servisný Záznam <noreply@${domain}>`;
-  const to = process.env.MAILGUN_TO || 'servisny@zaznam.sk';
+  // MAILGUN_TO accepts a comma-separated list — all recipients receive the mail
+  const to = (process.env.MAILGUN_TO || 'servisny@zaznam.sk,kanos@kanos.sk')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
 
   const esc = {
     meno: escapeHtml(meno),
@@ -145,7 +149,7 @@ export default async function handler(req, res) {
   try {
     await mg.messages.create(domain, {
       from,
-      to: [to],
+      to,
       'h:Reply-To': email,
       subject: `Nová správa od ${meno} ${priezvisko}`,
       html,
