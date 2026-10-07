@@ -1784,7 +1784,7 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 }
 .site-header.island .header-inner { height: 50px; gap: 20px; position: relative; }
 
-/* Mobile island: center the logo + wordmark; hamburger stays on the right */
+/* Mobile island: center the logo + wordmark; hamburger pinned right */
 @media (max-width: 767px) {
   .site-header.island .logo {
     position: absolute;
@@ -1792,6 +1792,7 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
     transform: translateX(-50%);
     pointer-events: auto;
   }
+  .site-header.island .hamburger { margin-left: auto; }
 }
 .site-header.island .logo-img {
   height: 28px;
