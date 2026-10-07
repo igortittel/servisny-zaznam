@@ -19,15 +19,82 @@ const escapeHtml = (s = '') =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
+// Field length caps (server-side; aligns with reasonable form expectations)
+const LIMITS = {
+  meno: 60, priezvisko: 60, email: 120, telefon: 40,
+  spolocnost: 120, poznamka: 2000,
+};
+
+// Anti-spam: timing + rate limit
+const MIN_FILL_MS = 2000;             // humans need ≥2s to fill the form
+const RL_WINDOW_MS = 10 * 60 * 1000;  // 10 minutes
+const RL_MAX = 3;                     // max submissions per IP per window
+const rateLimitMap = new Map();       // ip → [timestamps]
+
+const clientIp = req =>
+  (req.headers['x-forwarded-for'] || '').split(',')[0].trim() ||
+  req.socket?.remoteAddress || 'unknown';
+
+const silentOk = res => res.status(200).json({ success: true });
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { meno, priezvisko, email, telefon, spolocnost, poznamka } = req.body || {};
+  const body = req.body || {};
+  const { meno, priezvisko, email, telefon, spolocnost, poznamka, website, t_start } = body;
+
+  // --- Anti-spam layer 1: honeypot ---
+  if (website && String(website).trim() !== '') {
+    console.warn('[spam] honeypot filled', { ip: clientIp(req) });
+    return silentOk(res);
+  }
+
+  // --- Anti-spam layer 2: timing (bots submit immediately) ---
+  const started = Number(t_start);
+  if (!started || Date.now() - started < MIN_FILL_MS) {
+    console.warn('[spam] timing too fast', { ip: clientIp(req), delta: Date.now() - (started || 0) });
+    return silentOk(res);
+  }
+
+  // --- Anti-spam layer 3: rate limit per IP ---
+  const ip = clientIp(req);
+  const now = Date.now();
+  const hits = (rateLimitMap.get(ip) || []).filter(t => now - t < RL_WINDOW_MS);
+  if (hits.length >= RL_MAX) {
+    console.warn('[spam] rate limit', { ip, hits: hits.length });
+    return silentOk(res);
+  }
+  hits.push(now);
+  rateLimitMap.set(ip, hits);
+  // Opportunistic cleanup — keep the map small
+  if (rateLimitMap.size > 500) {
+    for (const [k, v] of rateLimitMap) {
+      const kept = v.filter(t => now - t < RL_WINDOW_MS);
+      if (kept.length === 0) rateLimitMap.delete(k);
+      else rateLimitMap.set(k, kept);
+    }
+  }
 
   if (!meno || !priezvisko || !email || !telefon) {
     return res.status(400).json({ error: 'Vyplňte prosím všetky povinné polia.' });
+  }
+
+  // --- Length caps (bots often paste huge payloads) ---
+  for (const [field, max] of Object.entries(LIMITS)) {
+    const v = body[field];
+    if (v && String(v).length > max) {
+      console.warn('[spam] length exceeded', { field, len: String(v).length });
+      return silentOk(res);
+    }
+  }
+
+  // --- URL count in message (classic spam signal) ---
+  const urlMatches = String(poznamka || '').match(/https?:\/\/|www\./gi) || [];
+  if (urlMatches.length > 2) {
+    console.warn('[spam] too many URLs', { count: urlMatches.length });
+    return silentOk(res);
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

@@ -575,6 +575,8 @@ if (contactForm) {
   const submitBtn = contactForm.querySelector('[type="submit"]');
   const messageEl = contactForm.querySelector('.form-message');
   const gdprCheck = contactForm.querySelector('#gdprCheck');
+  const tStartEl = contactForm.querySelector('#formTStart');
+  if (tStartEl) tStartEl.value = String(Date.now());
 
   contactForm.addEventListener('submit', async e => {
     e.preventDefault();
@@ -589,6 +591,8 @@ if (contactForm) {
       telefon: contactForm.telefon.value.trim(),
       spolocnost: contactForm.spolocnost?.value.trim() || '',
       poznamka: contactForm.poznamka?.value.trim() || '',
+      website: contactForm.website?.value || '',
+      t_start: tStartEl?.value || '',
     };
     submitBtn.classList.add('btn-loading');
     submitBtn.textContent = 'Odosielam…';
