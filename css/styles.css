@@ -1784,13 +1784,13 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 }
 .site-header.island .header-inner { height: 50px; gap: 20px; position: relative; }
 
-/* Mobile island: center the logo + wordmark; hamburger pinned right */
+/* Mobile island: 3-zone layout — logo-icon (left) | wordmark (center) | hamburger (right) */
 @media (max-width: 767px) {
-  .site-header.island .logo {
+  .site-header.island .logo-wordmark {
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    pointer-events: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   .site-header.island .hamburger { margin-left: auto; }
 }
