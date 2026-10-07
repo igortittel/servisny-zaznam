@@ -242,10 +242,13 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
 }
 
 .nav-mobile.open {
-  border-color: var(--border);
-  background-color: rgba(250, 250, 249, 0.98);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(15, 14, 13, 0.08);
+  background-color: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    0 20px 40px rgba(15, 14, 13, 0.14),
+    0 6px 14px rgba(15, 14, 13, 0.06);
 }
 
 .nav-mobile-inner {
@@ -267,7 +270,13 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   padding: var(--s3) var(--px) 0;
 }
 
-.nav-mobile .btn { width: 100%; }
+/* CTA inside mobile menu — override .nav-mobile a color/padding collision */
+.nav-mobile .nav-cta-wrap .btn {
+  width: 100%;
+  color: var(--surface);
+  padding: 14px 26px;
+  border-bottom: none;
+}
 
 /* =====================
    Hero
@@ -1930,9 +1939,10 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   .feat-stack-card {
     top: 80px;
     min-height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 120px;
     border-radius: 22px;
   }
+  .feat-stack-card:last-child { margin-bottom: 0; }
   .fs-card-inner {
     grid-template-columns: 1fr;
     gap: 24px;
@@ -2172,9 +2182,7 @@ h3 { font-size: 20px; font-weight: 600; line-height: 1.3; color: var(--ink); }
   .pricing-card.expanded .pricing-details {
     max-height: 800px;
     padding: 4px 20px 22px;
-    border-top: 1px solid var(--border);
   }
-  .pricing-card.popular.expanded .pricing-details { border-top-color: rgba(15,14,13,0.15); }
 }
 
 /* Desktop: header/details flatten back into vertical card content */
